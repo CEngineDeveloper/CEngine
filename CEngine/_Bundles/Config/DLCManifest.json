@@ -1,0 +1,382 @@
+{
+    "Data": [
+        {
+            "DLCName": "Internal",
+            "BundleName": "internal_shared/92e19aaa1b04c6b2c224d400293ad718",
+            "IsShared": true,
+            "AssetFullPaths": [
+                {
+                    "BuildRuleName": "material",
+                    "SourceBundleName": "material",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Material/CircleGuidanceMat.mat",
+                    "FileName": "CircleGuidanceMat",
+                    "Category": ""
+                },
+                {
+                    "BuildRuleName": "material",
+                    "SourceBundleName": "material",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Material/RectGuidanceMat.mat",
+                    "FileName": "RectGuidanceMat",
+                    "Category": ""
+                },
+                {
+                    "BuildRuleName": "material",
+                    "SourceBundleName": "material",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Material/UIBlur.mat",
+                    "FileName": "UIBlur",
+                    "Category": ""
+                }
+            ]
+        },
+        {
+            "DLCName": "Internal",
+            "BundleName": "internal_shared/499aedbaba625396244a6350b4abebaa",
+            "IsShared": true,
+            "AssetFullPaths": [
+                {
+                    "BuildRuleName": "",
+                    "SourceBundleName": "",
+                    "FullPath": "Assets/Plugins/CEngine/_Res/Shaders/CircleGuidanceShader.shader",
+                    "FileName": "CircleGuidanceShader",
+                    "Category": ""
+                },
+                {
+                    "BuildRuleName": "",
+                    "SourceBundleName": "",
+                    "FullPath": "Assets/Plugins/CEngine/_Res/Shaders/RectGuidanceShader.shader",
+                    "FileName": "RectGuidanceShader",
+                    "Category": ""
+                },
+                {
+                    "BuildRuleName": "",
+                    "SourceBundleName": "",
+                    "FullPath": "Assets/Plugins/CEngine/_Res/Shaders/MaskedUIBlur.shader",
+                    "FileName": "MaskedUIBlur",
+                    "Category": ""
+                }
+            ]
+        },
+        {
+            "DLCName": "Internal",
+            "BundleName": "internal_shared/c83e2295897c7ac2630c2367d484e40c",
+            "IsShared": true,
+            "AssetFullPaths": [
+                {
+                    "BuildRuleName": "",
+                    "SourceBundleName": "",
+                    "FullPath": "Assets/_Arts/Fonts/Normal-S.otf",
+                    "FileName": "Normal-S",
+                    "Category": ""
+                }
+            ]
+        },
+        {
+            "DLCName": "Internal",
+            "BundleName": "internal_shared/e7d5a0a5a17c2cab3733d0b72dd88b1e",
+            "IsShared": true,
+            "AssetFullPaths": [
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/LoggerView/ULogItem.prefab",
+                    "FileName": "ULogItem",
+                    "Category": "view"
+                }
+            ]
+        },
+        {
+            "DLCName": "Internal",
+            "BundleName": "internal_config",
+            "IsShared": false,
+            "AssetFullPaths": [
+                {
+                    "BuildRuleName": "config",
+                    "SourceBundleName": "config",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Config/DLCItem.json",
+                    "FileName": "DLCItem",
+                    "Category": ""
+                },
+                {
+                    "BuildRuleName": "config",
+                    "SourceBundleName": "config",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Config/DLCManifest.json",
+                    "FileName": "DLCManifest",
+                    "Category": ""
+                }
+            ]
+        },
+        {
+            "DLCName": "Internal",
+            "BundleName": "internal_language",
+            "IsShared": false,
+            "AssetFullPaths": [
+                {
+                    "BuildRuleName": "language",
+                    "SourceBundleName": "language",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Language/System.bytes",
+                    "FileName": "System",
+                    "Category": ""
+                }
+            ]
+        },
+        {
+            "DLCName": "Internal",
+            "BundleName": "internal_audio",
+            "IsShared": false,
+            "AssetFullPaths": [
+                {
+                    "BuildRuleName": "audio",
+                    "SourceBundleName": "audio",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Audio/AppTab.wav",
+                    "FileName": "AppTab",
+                    "Category": ""
+                }
+            ]
+        },
+        {
+            "DLCName": "Internal",
+            "BundleName": "internal_material",
+            "IsShared": false,
+            "AssetFullPaths": [
+                {
+                    "BuildRuleName": "material",
+                    "SourceBundleName": "material",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Material/ImageGrey.mat",
+                    "FileName": "ImageGrey",
+                    "Category": ""
+                }
+            ]
+        },
+        {
+            "DLCName": "Internal",
+            "BundleName": "internal_ui",
+            "IsShared": false,
+            "AssetFullPaths": [
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/HUDItem/UDamageJumpFont.prefab",
+                    "FileName": "UDamageJumpFont",
+                    "Category": "huditem"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/HUDItem/UStateJumpFont.prefab",
+                    "FileName": "UStateJumpFont",
+                    "Category": "huditem"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/HUDItem/UTextBubble.prefab",
+                    "FileName": "UTextBubble",
+                    "Category": "huditem"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/HUDItem/UTreatmentJumpFont.prefab",
+                    "FileName": "UTreatmentJumpFont",
+                    "Category": "huditem"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/Presenter/UBgText.prefab",
+                    "FileName": "UBgText",
+                    "Category": "presenter"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/Presenter/UBlur.prefab",
+                    "FileName": "UBlur",
+                    "Category": "presenter"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/Presenter/UIconAttr.prefab",
+                    "FileName": "UIconAttr",
+                    "Category": "presenter"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/Presenter/UImage.prefab",
+                    "FileName": "UImage",
+                    "Category": "presenter"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/Presenter/UProto.prefab",
+                    "FileName": "UProto",
+                    "Category": "presenter"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/Presenter/UText.prefab",
+                    "FileName": "UText",
+                    "Category": "presenter"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/Root/UHUDView.prefab",
+                    "FileName": "UHUDView",
+                    "Category": "root"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/Root/URootView.prefab",
+                    "FileName": "URootView",
+                    "Category": "root"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/Root/UWorldRootView.prefab",
+                    "FileName": "UWorldRootView",
+                    "Category": "root"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UBattleMenuView.prefab",
+                    "FileName": "UBattleMenuView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UGuideView.prefab",
+                    "FileName": "UGuideView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UHelpView.prefab",
+                    "FileName": "UHelpView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/ULoadingView.prefab",
+                    "FileName": "ULoadingView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UMainMenuView.prefab",
+                    "FileName": "UMainMenuView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UModalBoxView.prefab",
+                    "FileName": "UModalBoxView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UNotificationLevelView.prefab",
+                    "FileName": "UNotificationLevelView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UNotificationView.prefab",
+                    "FileName": "UNotificationView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UPlotTipView.prefab",
+                    "FileName": "UPlotTipView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UProcessView.prefab",
+                    "FileName": "UProcessView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/URenameView.prefab",
+                    "FileName": "URenameView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/USaveOrLoadView.prefab",
+                    "FileName": "USaveOrLoadView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/USelectView.prefab",
+                    "FileName": "USelectView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/USettingsView.prefab",
+                    "FileName": "USettingsView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UTestView.prefab",
+                    "FileName": "UTestView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/LoggerView/ULoggerView.prefab",
+                    "FileName": "ULoggerView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/TooltipView/UTipView.prefab",
+                    "FileName": "UTipView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/TooltipView/UTooltipTopdownView.prefab",
+                    "FileName": "UTooltipTopdownView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/TooltipView/UTooltipView.prefab",
+                    "FileName": "UTooltipView",
+                    "Category": "view"
+                }
+            ]
+        }
+    ]
+}

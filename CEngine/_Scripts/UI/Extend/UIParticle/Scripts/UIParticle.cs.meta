@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d52ec34831a2aea4f8e8ea5cbcd3507d
+timeCreated: 1514381798
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - maskTexture: {instanceID: 0}
+  - depthRenderShader: {fileID: 4800000, guid: 7cf7e97856b7e774d9b22c8915b155c3, type: 3}
+  - cullRenderShader: {fileID: 4800000, guid: 138a49593c2637e4a9ad77c8c4655a37, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

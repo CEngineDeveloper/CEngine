@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca0a474581c7b6499b507384fd05200, type: 3}
+  m_Name: Mappings
+  m_EditorClassIdentifier: 
+  m_customMappingKeys:
+  - DATE_SHORT
+  - DATE_YEAR
+  - AUTHOR_CYM
+  - NAME_SPACE
+  - NAME_COPYRIGHT
+  - NAME_MAINUIVIEW
+  m_customMappingValues:
+  - m_targetScript: {fileID: 11500000, guid: 5a43431557623774ab5f666a0bb0e54d, type: 3}
+    m_methodName: DateShort
+  - m_targetScript: {fileID: 11500000, guid: 5a43431557623774ab5f666a0bb0e54d, type: 3}
+    m_methodName: DateYear
+  - m_targetScript: {fileID: 11500000, guid: 5a43431557623774ab5f666a0bb0e54d, type: 3}
+    m_methodName: Author_CYM
+  - m_targetScript: {fileID: 11500000, guid: 5a43431557623774ab5f666a0bb0e54d, type: 3}
+    m_methodName: Name_Space
+  - m_targetScript: {fileID: 11500000, guid: 5a43431557623774ab5f666a0bb0e54d, type: 3}
+    m_methodName: DateShort
+  - m_targetScript: {fileID: 11500000, guid: 5a43431557623774ab5f666a0bb0e54d, type: 3}
+    m_methodName: Name_MainUIView
+  m_envMappingKeys:
+  - AUTHOR
+  m_envMappingValues:
+  - DEVNAME_FULL
