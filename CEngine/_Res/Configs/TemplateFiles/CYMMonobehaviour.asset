@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -16,7 +17,7 @@ MonoBehaviour:
     TemplateTokenFormat: '{0}'
     Extension: .cs
     Contents: "//------------------------------------------------------------------------------\n//
-      %TEMPLATE_NAME%.cs\n// Copyright %DATE_YEAR% %NAME_COPYRIGHT% \n// Created by
-      %AUTHOR_CYM% on %DATE_SHORT%\n// Owner: %AUTHOR_CYM%\n// \u586B\u5199\u7C7B\u7684\u63CF\u8FF0...\n//------------------------------------------------------------------------------\n\nusing
-      UnityEngine;\nusing CYM;\nusing CYM.UI;\nusing CYM.AI;\nnamespace CYM\n{\n    public
-      class %TEMPLATE_NAME% : MonoBehaviour \n    {\n\n    }\n}"
+      %TEMPLATE_NAME%.cs\n// Copyright %DATE_YEAR% %NAME_COPYRIGHT% \n// Created
+      by %AUTHOR_CYM% on %DATE_SHORT%\n// Owner: %AUTHOR_CYM%\n// \u586B\u5199\u7C7B\u7684\u63CF\u8FF0...\n//------------------------------------------------------------------------------\n\nusing
+      UnityEngine;\nusing CYM;\nusing CYM.UI;\nnamespace CYM\n{\n    public class
+      %TEMPLATE_NAME% : MonoBehaviour \n    {\n\n    }\n}"

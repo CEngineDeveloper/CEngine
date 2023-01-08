@@ -6,7 +6,8 @@ namespace CYM
 {
     public partial class BaseGlobal : BaseCoreMono
     {
-        Plugin Pathfinding = new Plugin  { 
+        static PluginGlobal PluginPathfinding = new PluginGlobal  
+        { 
             OnInstall = (g)=> {
                 AStarMgr = g.AddComponent<BaseAStarMgr>();
             } 

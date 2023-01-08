@@ -58,6 +58,7 @@ MonoBehaviour:
   Group: 1
   IsExclusive: 1
   IsReturn: 0
+  IsMutextAll: 0
   IsFullScreen: 1
   IsAddBlocker: 1
   IsBlockerClose: 0
@@ -83,14 +84,18 @@ MonoBehaviour:
     OutEase: 26
     StartPos: {x: 0, y: 0}
   IsFocus: 1
+  IsLayoutRebuild: 0
   PosAnimator: []
   ScaleAnimator: []
+  BntInfo: {fileID: 0}
   BntClose: {fileID: 56066124411133307}
   Title: {fileID: 887638067495751849}
+  LuaScript: 
   IsDefault: 0
   RemoteScroll: {fileID: 4835221673839286689}
   InputField: {fileID: 1947150713859143261}
   BntSaveOrLoad: {fileID: 8990327561457013726}
+  BntBack: {fileID: 0}
 --- !u!1 &95427992263704673
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +286,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -393,7 +399,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4200207286775840476}
-  - component: {fileID: 4535936827224357635}
   - component: {fileID: 6800679316045757474}
   - component: {fileID: 7993828377576371815}
   m_Layer: 5
@@ -425,36 +430,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000045776367, y: 0}
   m_SizeDelta: {x: 103, y: 103}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4535936827224357635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 162697758378684521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bac33ade27cf4542bd53b1b13d90941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _defaultShader: {fileID: 4800000, guid: 8d19bf0a0d7a69643b050c159096b413, type: 3}
-  _defaultETC1Shader: {fileID: 4800000, guid: 9734f2045a9c1f74d956d0573ac8a2f3, type: 3}
-  _source: 0
-  _separateMask: {fileID: 4200207286775840476}
-  _sprite: {fileID: 21300000, guid: 871eee8f18c0c6744bc5d675e3ee0e93, type: 3}
-  _spriteBorderMode: 0
-  _spritePixelsPerUnitMultiplier: 1
-  _texture: {fileID: 0}
-  _textureUVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  _channelWeights: {r: 1, g: 0, b: 0, a: 0}
-  _raycastThreshold: 0
-  _invertMask: 0
-  _invertOutsides: 0
 --- !u!222 &6800679316045757474
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -655,7 +630,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.49999976}
 --- !u!114 &1947481734903984639
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -788,6 +763,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -860,8 +836,6 @@ MonoBehaviour:
   EffectColorTrans: []
   AnimTrans: []
   SpriteTrans: []
-  ITextField: {fileID: 1947173049658582289}
-  IPlacegolder: {fileID: 0}
 --- !u!1 &2805764189950874552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1244,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1351,6 +1326,7 @@ MonoBehaviour:
   IOverlayIcon: {fileID: 28640713048096067}
   Inverse: 1
   IsSwitch: 0
+  SwitchDuration: 0.1
   ArchiveIcon: {fileID: 6306447888208753789}
   Time: {fileID: 3761196904841414248}
   Duration: {fileID: 8239167271499912482}
@@ -1678,6 +1654,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1792,7 +1769,6 @@ GameObject:
   - component: {fileID: 5221186437089846503}
   - component: {fileID: 426378369624853563}
   - component: {fileID: 6306447888208753789}
-  - component: {fileID: 7874722819204383649}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -1858,18 +1834,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7874722819204383649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6337266325310180880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddc1fbd4bd796345832996a9560b9bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6471424358845164117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,6 +1927,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -2132,6 +2097,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -2296,6 +2262,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 1
   IsColorShow: 0
   IsPosShow: 0
@@ -2447,7 +2414,6 @@ GameObject:
   - component: {fileID: 5438835462744382097}
   - component: {fileID: 8040072638368908918}
   - component: {fileID: 9064617458828693361}
-  - component: {fileID: 1100467721716437258}
   m_Layer: 5
   m_Name: Shadow
   m_TagString: Untagged
@@ -2513,18 +2479,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1100467721716437258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8260165747489786567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddc1fbd4bd796345832996a9560b9bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8932335640135257598
 GameObject:
   m_ObjectHideFlags: 0

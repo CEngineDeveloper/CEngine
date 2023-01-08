@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 21728563106939366}
   - component: {fileID: 2996602098177573894}
   - component: {fileID: 3770317621816538629}
-  - component: {fileID: 5818052273486988654}
+  - component: {fileID: 330951041425432267}
   m_Layer: 5
   m_Name: UIconAttr
   m_TagString: Untagged
@@ -41,7 +41,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -240.044, y: 77}
-  m_SizeDelta: {x: 188.2118, y: 45.6}
+  m_SizeDelta: {x: 188.2118, y: 23.9719}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2996602098177573894
 CanvasRenderer:
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5818052273486988654
+--- !u!114 &330951041425432267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,9 +90,92 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746914589786118038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806530d9ab1ed8041a0be3e268ff9bd0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a20605326ac81240945a80bc3bab3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsIgnoreBlockClick: 0
+  IsRecord: 0
+  IsActiveByShow: 1
+  ShowType: 0
+  MutexGroup: 0
+  IsAlphaShow: 0
+  IsColorShow: 0
+  IsPosShow: 0
+  IsScaleShow: 0
+  IsSimpleShow: 0
+  AlphaShow:
+    Target: {fileID: 0}
+    IsSameDuration: 1
+    OpenDuration: 0.2
+    CloseDuration: 0.2
+    Duration: 0.2
+    Delay: 0
+    IsReset: 1
+    InEase: 27
+    OutEase: 26
+    From: 0.5
+    To: 1
+  ColorShow:
+    Target: {fileID: 0}
+    IsSameDuration: 1
+    OpenDuration: 0.2
+    CloseDuration: 0.2
+    Duration: 0.2
+    Delay: 0
+    IsReset: 1
+    InEase: 27
+    OutEase: 26
+    From: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    To: {r: 1, g: 1, b: 1, a: 1}
+  PosShow:
+    Target: {fileID: 0}
+    IsSameDuration: 1
+    OpenDuration: 0.2
+    CloseDuration: 0.2
+    Duration: 0.2
+    Delay: 0
+    IsReset: 1
+    InEase: 27
+    OutEase: 26
+    From: {x: 0.5, y: 0.5}
+  ScaleShow:
+    Target: {fileID: 0}
+    IsSameDuration: 1
+    OpenDuration: 0.2
+    CloseDuration: 0.2
+    Duration: 0.2
+    Delay: 0
+    IsReset: 1
+    InEase: 27
+    OutEase: 26
+    From: {x: 0.5, y: 0.5}
+  AlphaSimpleShow:
+    Target: {fileID: 0}
+    IsSameDuration: 1
+    OpenDuration: 0.2
+    CloseDuration: 0.2
+    Duration: 0.2
+    Delay: 0
+    IsReset: 1
+    InEase: 27
+    OutEase: 26
+    From: 0.5
+  IsCanClick: 1
+  IsCanLongPress: 0
+  IsCanLongEnter: 0
+  FontType: Normal
+  ColorTrans: []
+  PosTrans: []
+  ScaleTrans: []
+  EffectColorTrans: []
+  AnimTrans: []
+  SpriteTrans: []
+  IName1: {fileID: 248060482779777693}
+  IIcon1: {fileID: 4799419664726153730}
+  IBg1: {fileID: 0}
+  IName2: {fileID: 5301883581176968266}
+  IIcon2: {fileID: 0}
+  IBg2: {fileID: 0}
 --- !u!1 &2680011782767734062
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,8 +211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 88.898, y: 0}
-  m_SizeDelta: {x: 86.203995, y: 0}
+  m_AnchoredPosition: {x: 87.297966, y: 0}
+  m_SizeDelta: {x: 83.004, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7245470833908415305
 CanvasRenderer:
@@ -208,8 +291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 67.6, y: -0.20000076}
-  m_SizeDelta: {x: 128.8, y: -3.4067001}
+  m_AnchoredPosition: {x: 64.39999, y: 0.000015258789}
+  m_SizeDelta: {x: 128.8, y: -0.000038147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3131787185389715765
 CanvasRenderer:
@@ -284,8 +367,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 24.5, y: -0.20000076}
-  m_SizeDelta: {x: 42.593, y: 42.5933}
+  m_AnchoredPosition: {x: 12.1786, y: -0.25437}
+  m_SizeDelta: {x: 24.3572, y: 24.253}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2009508254141581986
 CanvasRenderer:
@@ -315,7 +398,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5d19d6a3636830f42a539b72b23d78f0, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -358,10 +441,10 @@ RectTransform:
   m_Father: {fileID: 21728563106939366}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 162.28651, y: 0.2000103}
-  m_SizeDelta: {x: 51.851, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -29.490005, y: 0.2000122}
+  m_SizeDelta: {x: 59.412003, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7831577389133550168
 CanvasRenderer:

@@ -149,35 +149,35 @@ namespace CYM.Unit
         #endregion
 
         #region Jump damage 负面跳字
-        public JumpFontData? JumpDamageStr(string str, [DefaultValue("Color.red")] Color col, bool needPlayer = false)
+        public JumpFontData? JumpDamageStr(string str, [DefaultValue(nameof(Color.red))] Color col, bool needPlayer = false)
         {
             if (!IsCanJump(needPlayer)) return null;
             return AddToJumpFontList(str, DamageText, col);
         }
-        public JumpFontData? JumpDamage(string key, [DefaultValue("Color.red")] Color col, bool needPlayer = false, params string[] objs) => JumpDamageStr(BaseLangMgr.Get(key, objs), col, needPlayer);
+        public JumpFontData? JumpDamage(string key, [DefaultValue(nameof(Color.red))] Color col, bool needPlayer = false, params string[] objs) => JumpDamageStr(BaseLangMgr.Get(key, objs), col, needPlayer);
         public JumpFontData? JumpDamage(float val, bool needPlayer = false) => JumpDamageStr(UIUtil.RoundD(val), Color.red, needPlayer);
         public JumpFontData? JumpDamage(string key, bool needPlayer = false, params string[] objs) => JumpDamageStr(BaseLangMgr.Get(key, objs), Color.red, needPlayer);
         #endregion
 
         #region Jump treat 正面跳字
-        public JumpFontData? JumpTreatStr(string str, [DefaultValue("Color.green")] Color col, bool needPlayer = false)
+        public JumpFontData? JumpTreatStr(string str, [DefaultValue(nameof(Color.green))] Color col, bool needPlayer = false)
         {
             if (!IsCanJump(needPlayer)) return null;
             return AddToJumpFontList(str, TreatmentText, col);
         }
-        public JumpFontData? JumpTreat(string key, [DefaultValue("Color.green")] Color col, bool needPlayer = false, params string[] objs) => JumpTreatStr(BaseLangMgr.Get(key, objs), col, needPlayer);
+        public JumpFontData? JumpTreat(string key, [DefaultValue(nameof(Color.green))] Color col, bool needPlayer = false, params string[] objs) => JumpTreatStr(BaseLangMgr.Get(key, objs), col, needPlayer);
         public JumpFontData? JumpTreat(float val, bool needPlayer = false) => JumpTreatStr(UIUtil.RoundD(val), Color.green, needPlayer);
         public JumpFontData? JumpTreat(string key, bool needPlayer = false, params string[] objs) => JumpDamageStr(BaseLangMgr.Get(key, objs), Color.green, needPlayer);
         #endregion
 
         #region Jump state 状态
-        public JumpFontData? JumpStateStr(string str, [DefaultValue("Color.white")] Color col, bool needPlayer = false)
+        public JumpFontData? JumpStateStr(string str, [DefaultValue(nameof(Color.white))] Color col, bool needPlayer = false)
         {
             if (!IsCanJump(needPlayer)) return null;
             return AddToJumpFontList(str, StateJumpText, col);
         }
         public JumpFontData? JumpStateStr(string str, bool needPlayer = false) => JumpStateStr(str,Color.white,needPlayer);
-        public JumpFontData? JumpState(string key, [DefaultValue("Color.white")] Color col, bool needPlayer = false) => JumpStateStr(BaseLangMgr.Get(key), col, needPlayer);
+        public JumpFontData? JumpState(string key, [DefaultValue(nameof(Color.white))] Color col, bool needPlayer = false) => JumpStateStr(BaseLangMgr.Get(key), col, needPlayer);
         public JumpFontData? JumpState(string key, bool needPlayer = false) => JumpStateStr(BaseLangMgr.Get(key), Color.white, needPlayer);
         #endregion
 

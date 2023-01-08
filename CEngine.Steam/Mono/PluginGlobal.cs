@@ -12,7 +12,6 @@ namespace CYM
 {
     public partial class BaseGlobal : BaseCoreMono
     {
-        [Distribution]
         public static Type Steam { get; private set; } = typeof(BaseSteamSDKMgr);
     }
 }

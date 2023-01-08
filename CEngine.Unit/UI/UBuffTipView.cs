@@ -4,9 +4,10 @@
 // 填写类的描述...
 //------------------------------------------------------------------------------
 using CYM.UI;
+using CYM.Unit;
 using UnityEngine;
 using UnityEngine.UI;
-namespace CYM.Unit
+namespace CYM.UI
 {
     public class UBuffTipView : UTooltipView
     {

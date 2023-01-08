@@ -60,7 +60,6 @@ MonoBehaviour:
   IsFullScreen: 0
   IsAddBlocker: 1
   IsBlockerClose: 0
-  BlockerCol: {r: 0, g: 0, b: 0, a: 0}
   IsShowDefault: 1
   IsActiveByShow: 1
   IsDragable: 0

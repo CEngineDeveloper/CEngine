@@ -97,6 +97,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -169,7 +170,7 @@ MonoBehaviour:
   EffectColorTrans: []
   AnimTrans: []
   SpriteTrans: []
-  IName: {fileID: 0}
+  IName: {fileID: 65363365613759790}
   IIcon: {fileID: 0}
   IBg: {fileID: 0}
   IsAnim: 0
@@ -427,6 +428,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -624,6 +626,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -821,6 +824,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1014,6 +1018,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1086,7 +1091,7 @@ MonoBehaviour:
   EffectColorTrans: []
   AnimTrans: []
   SpriteTrans: []
-  IImage: {fileID: 0}
+  IImage: {fileID: 4670093907415262789}
 --- !u!1 &1622909475565399357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,6 +1266,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1454,6 +1460,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1526,7 +1533,7 @@ MonoBehaviour:
   EffectColorTrans: []
   AnimTrans: []
   SpriteTrans: []
-  IImage: {fileID: 0}
+  IImage: {fileID: -838237476074138170}
 --- !u!1 &3283641421610130908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,6 +1674,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1838,6 +1846,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1910,7 +1919,7 @@ MonoBehaviour:
   EffectColorTrans: []
   AnimTrans: []
   SpriteTrans: []
-  IName: {fileID: 0}
+  IName: {fileID: 903720306166630576}
   IIcon: {fileID: 0}
   IBg: {fileID: 0}
   IsAnim: 0
@@ -2088,6 +2097,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -2285,6 +2295,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0

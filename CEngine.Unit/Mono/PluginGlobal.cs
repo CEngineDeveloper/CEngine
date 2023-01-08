@@ -11,13 +11,14 @@ namespace CYM
 {
     public partial class BaseGlobal : BaseCoreMono
     {
-        Plugin Unit = new Plugin
+        static PluginGlobal PluginUnit = new PluginGlobal
         {
             OnInstall = (g) =>
             {
                 PerformMgr = g.AddComponent<BasePerformMgr>();
             }
         };
+
         public static IAttrMgr AttrMgr { get; protected set; }
         public static IBuffMgr BuffMgr { get; protected set; }
         public static BasePerformMgr PerformMgr { get; protected set; }

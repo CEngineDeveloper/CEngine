@@ -1,5 +1,6 @@
 using CYM.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -124,24 +125,50 @@ namespace CYM.Unit
         Sprite GetIcon();
         string GetDesc(bool isHaveSign = false, bool isHaveColor = false, bool isHeveAttrName = true);
     }
-    #region Imm
-    /// <summary>
-    /// 增益或者减益类型
-    /// </summary>
-    public enum ImmuneGainType
+
+    public interface IAlertMgr<out TData> where TData : TDBaseAlertData
     {
-        All = 0,
-        Negative = 1,//负面
-        Positive = 2,//正面
+        #region Callback
+        event Callback<TData> Callback_OnAdded;
+        event Callback<TData> Callback_OnRemoved;
+        event Callback<TData> Callback_OnMerge;
+        event Callback<TData> Callback_OnCommingTimeOut;
+        event Callback<TData> Callback_OnInteractionChange;
+        event Callback<TData> Callback_DisposableChange;
+        event Callback<TData> Callback_ContinueChange;
+        #endregion
+
+        #region pub
+        IList RawData { get; }
+        #endregion
+
+        #region set
+        void Remove(long id);
+        #endregion
     }
-    /// <summary>
-    /// 效果的免疫类型
-    /// </summary>
-    public enum ImmuneType
+    public interface IEventMgr<out TDataOut>
     {
-        All = 0,
-        Normal = 1, //一般类型:普攻
-        Magic = 2,  //魔法类型:技能
+        #region callback
+        event Callback<TDataOut> Callback_OnEventAdded;
+        event Callback<TDataOut> Callback_OnEventRemoved;
+        event Callback<TDataOut> Callback_OnEventChange;
+        #endregion
+
+        #region set
+        TDataOut Add(string eventDlgName);
+        void SelOption(TDBaseEventData eventData, EventOption option);
+        void SelOption(TDBaseEventData eventData, int index);
+        #endregion
+
+        #region is
+        bool IsHave();
+        #endregion
+
+        #region get
+        TDataOut Get(int id);
+        TDataOut First();
+        TDataOut Rand();
+        int Count();
+        #endregion
     }
-    #endregion
 }

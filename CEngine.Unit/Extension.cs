@@ -100,8 +100,6 @@ namespace CYM.Unit
                 item.SetUnit(unit);
             return cost;
         }
-        #endregion
-
         // »ñµÃ½±ÀøµÄ×Ö·û´Ü
         public static string GetDesc(this List<BaseReward> data)
         {
@@ -116,5 +114,6 @@ namespace CYM.Unit
             }
             return finalStr;
         }
+        #endregion
     }
 }

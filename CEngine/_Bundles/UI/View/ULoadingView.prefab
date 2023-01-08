@@ -139,6 +139,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -211,7 +212,7 @@ MonoBehaviour:
   EffectColorTrans: []
   AnimTrans: []
   SpriteTrans: []
-  IName: {fileID: 0}
+  IName: {fileID: 4726922601418642861}
   IIcon: {fileID: 0}
   IBg: {fileID: 0}
   IsAnim: 0
@@ -315,6 +316,7 @@ MonoBehaviour:
   Group: 0
   IsExclusive: 0
   IsReturn: 0
+  IsMutextAll: 0
   IsFullScreen: 0
   IsAddBlocker: 1
   IsBlockerClose: 0
@@ -340,10 +342,13 @@ MonoBehaviour:
     OutEase: 26
     StartPos: {x: 0, y: 0}
   IsFocus: 1
+  IsLayoutRebuild: 0
   PosAnimator: []
   ScaleAnimator: []
+  BntInfo: {fileID: 0}
   BntClose: {fileID: 0}
   Title: {fileID: 0}
+  LuaScript: 
   IsDefault: 0
   LoadingSprities: []
   RawBG: {fileID: 6502284798691842195}
@@ -448,6 +453,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 1
   IsColorShow: 0
   IsPosShow: 0
@@ -526,6 +532,7 @@ MonoBehaviour:
   IIcon: {fileID: 0}
   IsFill: 1
   ProgressType: 0
+  IFollowObj: {fileID: 0}
 --- !u!1 &6907659708560251785
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +788,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 1
   IsColorShow: 0
   IsPosShow: 0
@@ -853,7 +861,7 @@ MonoBehaviour:
   EffectColorTrans: []
   AnimTrans: []
   SpriteTrans: []
-  IName: {fileID: 0}
+  IName: {fileID: 8305863324359650387}
   IIcon: {fileID: 0}
   IBg: {fileID: 0}
   IsAnim: 0
@@ -970,6 +978,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1042,7 +1051,7 @@ MonoBehaviour:
   EffectColorTrans: []
   AnimTrans: []
   SpriteTrans: []
-  IIcon: {fileID: 0}
+  IIcon: {fileID: 1190338298142243080}
   IFrame: {fileID: 0}
 --- !u!1 &8618597683187288589
 GameObject:
@@ -1137,6 +1146,7 @@ MonoBehaviour:
   IsRecord: 0
   IsActiveByShow: 1
   ShowType: 0
+  MutexGroup: 0
   IsAlphaShow: 0
   IsColorShow: 0
   IsPosShow: 0
@@ -1209,5 +1219,5 @@ MonoBehaviour:
   EffectColorTrans: []
   AnimTrans: []
   SpriteTrans: []
-  IIcon: {fileID: 0}
+  IIcon: {fileID: 3723184242304090257}
   IFrame: {fileID: 0}

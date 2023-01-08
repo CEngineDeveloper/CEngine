@@ -13,7 +13,15 @@ namespace CYM.Cam
     public class BaseSLGCamera2DMgr : BaseSLGCameraMgr
     {
         #region prop
-        public override float ScrollVal => RTSCamera.ScrollValue;
+        public override float ScrollVal
+        {
+            get
+            {
+                if (RTSCamera == null)
+                    return .0f;
+                return RTSCamera.ScrollValue; 
+            }
+        }
         protected RTSCamera2D RTSCamera { get; private set; }
         DBBaseSettings DBSettings => BaseGlobal.Settings;
         #endregion
@@ -58,7 +66,8 @@ namespace CYM.Cam
         public override void Enable(bool b)
         {
             base.Enable(b);
-            RTSCamera.enabled = b;
+            if(RTSCamera!=null)
+                RTSCamera.enabled = b;
         }
         public override void Jump(Vector3 pos, float? heightPercent = null)
         {

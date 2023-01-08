@@ -1,12 +1,9 @@
 using CYM.FOW;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 namespace CYM
 {
     public partial class BaseGlobal : BaseCoreMono
     {
-        Plugin FOW = new Plugin
+        static PluginGlobal PluginFOW = new PluginGlobal
         {
             OnInstall = (g) => {
                 FOWMgr = g.AddComponent<BaseFOWMgr>();

@@ -45,7 +45,7 @@ namespace CYM.Pathfinding
         #region private
         List<Vector3> offsets = new List<Vector3>();
         List<MoveData> moveUnits = new List<MoveData>();
-        static readonly SimpleObjPool<MoveData> moveDataPool = new SimpleObjPool<MoveData>();
+        static readonly ObjPool<MoveData> moveDataPool = new ObjPool<MoveData>();
         #endregion
 
         #region override

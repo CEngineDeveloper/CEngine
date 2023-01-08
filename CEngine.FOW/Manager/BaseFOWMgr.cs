@@ -37,10 +37,14 @@ namespace CYM.FOW
         protected override void OnBattleLoadedScene()
         {
             base.OnBattleLoadedScene();
-            FOWPPS = Util.GetSetting<FogOfWarPPSv2>(CameraMgr.MainCameraTrans.gameObject);
-            FOW = FogOfWarTeam.instances.FirstOrDefault();
-            EnableFOW(true);
-            FOW?.SetAll(255);
+            if (CameraMgr != null &&
+                CameraMgr.MainCamera != null)
+            {
+                FOWPPS = Util.GetSetting<FogOfWarPPSv2>(CameraMgr.MainCameraTrans.gameObject);
+                FOW = FogOfWarTeam.instances.FirstOrDefault();
+                EnableFOW(true);
+                FOW?.SetAll(255);
+            }
         }
         public override void OnGameStart1()
         {
