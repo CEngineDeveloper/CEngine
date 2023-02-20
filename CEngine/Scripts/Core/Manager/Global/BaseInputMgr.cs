@@ -880,7 +880,6 @@ namespace CYM
         public void DoExitUnit(BaseUnit arg1)
         {
             OnExitUnit(arg1);
-            //ButtonExitJob = Util.Invoke(() => ,0.02f);
         }
         #endregion
 

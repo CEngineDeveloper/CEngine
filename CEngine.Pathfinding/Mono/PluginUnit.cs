@@ -1,11 +1,18 @@
 using CYM.Pathfinding;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 namespace CYM
 {
     public partial class BaseUnit : BaseCoreMono
     {
+        static PluginUnit PluginMove = new PluginUnit
+        {
+            OnPostAddComponet = (u, x) => {
+                if (x is IMoveMgr)
+                {
+                    u.MoveMgr = x as IMoveMgr;
+                }
+            }
+        };
+
         public IMoveMgr MoveMgr { get; protected set; }
         public IAStarMoveMgr AStarMoveMgr => MoveMgr as IAStarMoveMgr;
     }

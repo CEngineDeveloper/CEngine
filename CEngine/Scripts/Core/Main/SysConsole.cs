@@ -1,12 +1,32 @@
+using CYM.UI;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 namespace CYM
 {
+    class LogMessage
+    {
+        public string Message;
+        public LogType Type;
+
+        public LogMessage(string msg, LogType type)
+        {
+            Message = msg;
+            Type = type;
+        }
+    }
+    public enum LogAnchor
+    {
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
+    }
     /// <summary>
     /// Registers a public static method with supported argument types as a console command.
     /// </summary>
@@ -149,15 +169,35 @@ namespace CYM
     public partial class SysConsole : BaseCoreMono
     {
         #region prop
-        private const int height = 25;
-        private const string inputControlName = "input";
-        private readonly char[] separator = { ' ' };
-        private readonly List<string> inputBuffer = new List<string>();
-        private static bool isShow = false;
-        private GUIStyle style;
-        private bool setFocusPending;
-        private string input;
-        private int inputBufferIndex = 0;
+        float scrollbaclVal;
+        const int height = 25;
+        const string inputControlName = "input";
+        readonly char[] separator = { ' ' };
+        readonly List<string> inputBuffer = new List<string>();
+        static bool isShow = false;
+        static GUIStyle Dev_style;
+        bool setFocusPending;
+        string input;
+        int inputBufferIndex = 0;
+        #endregion
+
+        #region Log
+        static GUIStyle Log_styleContainer, Log_styleText;
+        static Queue<LogMessage> Log_queue = new Queue<LogMessage>();
+        LogAnchor AnchorPosition = LogAnchor.TopLeft;
+        Vector2 scrollPos;
+        float LogHeight = 0.5f;
+        float LogWidth = 1f;
+        int LogMargin = 20;
+        bool LogMessages = true;
+        bool LogWarnings = true;
+        bool LogErrors = true;
+        Color MessageColor = Color.white;
+        Color WarningColor = Color.yellow;
+        Color ErrorColor = new Color(1, 0.5f, 0.5f);
+        bool StackTraceMessages = false;
+        bool StackTraceWarnings = false;
+        bool StackTraceErrors = true;
         #endregion
 
         #region life
@@ -172,25 +212,48 @@ namespace CYM
             base.Awake();
             Ins = this;
         }
+        public override void OnEnable()
+        {
+            base.OnEnable();
+            Application.logMessageReceived += HandleLog;
+        }
+        public override void OnDisable()
+        {
+            Application.logMessageReceived -= HandleLog;
+            base.OnDisable();
+        }
         public static void Initialize()
         {
             if (Ins==null) return;
+            Log_queue = new Queue<LogMessage>();
+            Texture2D back = new Texture2D(1, 1);
+            back.SetPixel(0, 0, new Color(0, 0, 0, 0.5f));
+            back.Apply();
+
+            Log_styleContainer = new GUIStyle();
+            Log_styleContainer.normal.background = back;
+            Log_styleContainer.wordWrap = false;
+            Log_styleContainer.padding = new RectOffset(5, 5, 5, 5);
+            Log_styleContainer.fixedWidth = Screen.width;
+            Log_styleText = new GUIStyle();
+            Log_styleText.fontSize = 14;
+
+            Dev_style = new GUIStyle
+            {
+                normal = new GUIStyleState { background = back, textColor = Color.white },
+                padding = new RectOffset(5, 5, 5, 5),
+                contentOffset = new Vector2(5, 0),
+                fixedWidth = Screen.width * 0.75f,
+                fixedHeight = 30,
+            };
             CommandDatabase.Init();
             CommandDatabase.RegisterCommands();
             CommandDatabase.RegisterUpdateCommands();
-
-
-            Ins.style = new GUIStyle
-            {
-                normal = new GUIStyleState { background = Texture2D.whiteTexture, textColor = Color.white },
-                contentOffset = new Vector2(5, 5),
-            };
         }
         public override void OnUpdate()
         {
             base.OnUpdate();
             if (!Application.isPlaying) return;
-            //if (!isShow) return;
 
             if (Input.GetKeyUp(ToggleKey) || MultitouchDetected())
             {
@@ -203,28 +266,16 @@ namespace CYM
             {
                 CommandDatabase.Update();
             }
+
+            UpdateLog();
         }
         public override void OnGUIPaint()
         {
             base.OnGUIPaint();
-            DrawGUI();
-        }
-        #endregion
-
-        #region private
-        private bool MultitouchDetected ()
-        {
-            if (!ToggleByMultitouch) return false;
-            return Input.touchCount > 2 && Input.touches.Any(touch => touch.phase == TouchPhase.Began);
-        }
-        private void DrawGUI ()
-        {
-            float offest = 0;
             if (BuildConfig.Ins.IsShowConsoleBnt &&
                 BuildConfig.Ins.BuildType == BuildType.Develop)
             {
-                offest = 70;
-                if (GUI.Button(new Rect(0, 0, offest, height), "Console"))
+                if (GUI.Button(new Rect(0, 0, 70, height), "Console"))
                 {
                     Toggle();
                 }
@@ -236,27 +287,112 @@ namespace CYM
                 return;
             }
 
-
             if (IsShow())
             {
-                GUI.backgroundColor = new Color(0, 0, 0, .65f);
-
-                GUI.SetNextControlName(inputControlName);
-
-                input = GUI.TextField(new Rect(offest, 0, Screen.width - 125 - offest, height), input, style);
-                if (GUI.Button(new Rect(Screen.width - 125, 0, 75, height), "EXECUTE", style)) ExecuteInput();
-                if (GUI.Button(new Rect(Screen.width - 050, 0, 50, height), "HIDE", style)) Hide();
-
-                if (setFocusPending)
-                {
-                    GUI.FocusControl(inputControlName);
-                    setFocusPending = false;
-                }
-
-                if (GUI.GetNameOfFocusedControl() == inputControlName) HandleGUIInput();
+                GUILayout.BeginVertical();
+                DrawLog();
+                DrawConsole();
+                GUILayout.EndVertical();
             }
         }
-        private void HandleGUIInput ()
+
+        #endregion
+
+        #region Draw
+        void DrawLog()
+        {
+            float w = (Screen.width - 2 * LogMargin) * LogWidth;
+            float h = (Screen.height - 2 * LogMargin) * LogHeight;
+            float x = 1, y = 1;
+
+            switch (AnchorPosition)
+            {
+                case LogAnchor.BottomLeft:
+                    x = LogMargin;
+                    y = LogMargin + (Screen.height - 2 * LogMargin) * (1 - LogHeight);
+                    break;
+
+                case LogAnchor.BottomRight:
+                    x = LogMargin + (Screen.width - 2 * LogMargin) * (1 - LogWidth);
+                    y = LogMargin + (Screen.height - 2 * LogMargin) * (1 - LogHeight);
+                    break;
+
+                case LogAnchor.TopLeft:
+                    x = LogMargin;
+                    y = LogMargin;
+                    break;
+
+                case LogAnchor.TopRight:
+                    x = LogMargin + (Screen.width - 2 * LogMargin) * (1 - LogWidth);
+                    y = LogMargin;
+                    break;
+            }
+
+            GUILayout.BeginVertical(Log_styleContainer);
+            scrollPos = GUILayout.BeginScrollView(scrollPos, false, false);
+            //scrollbaclVal = GUILayout.VerticalScrollbar(scrollbaclVal, 100, 0, 100);
+            foreach (LogMessage m in Log_queue)
+            {
+                switch (m.Type)
+                {
+                    case LogType.Warning:
+                        Log_styleText.normal.textColor = WarningColor;
+                        break;
+
+                    case LogType.Log:
+                        Log_styleText.normal.textColor = MessageColor;
+                        break;
+
+                    case LogType.Assert:
+                    case LogType.Exception:
+                    case LogType.Error:
+                        Log_styleText.normal.textColor = ErrorColor;
+                        break;
+
+                    default:
+                        Log_styleText.normal.textColor = MessageColor;
+                        break;
+                }
+
+                GUILayout.Label(m.Message, Log_styleText);
+            }
+            GUILayout.EndScrollView();
+            GUILayout.EndVertical();
+        }
+        void DrawConsole()
+        {
+            GUILayout.BeginHorizontal(Log_styleContainer);
+            GUI.backgroundColor = new Color(0, 0, 0, .7f);
+            GUI.SetNextControlName(inputControlName);
+            input = GUILayout.TextField(input, Dev_style);
+            if (GUILayout.Button("EXECUTE",GUILayout.Height(30))) 
+                ExecuteInput();
+            if (GUILayout.Button("HIDE", GUILayout.Height(30))) 
+                Hide();
+            if (setFocusPending)
+            {
+                GUI.FocusControl(inputControlName);
+                setFocusPending = false;
+            }
+            if (GUI.GetNameOfFocusedControl() == inputControlName) HandleConsoleGUIInput();
+            GUILayout.EndHorizontal();
+        }
+        #endregion
+
+        #region private
+        void UpdateLog()
+        {
+            float InnerHeight = (Screen.height - 2 * LogMargin) * LogHeight - 2 * 5;
+            int TotalRows = (int)(InnerHeight / Log_styleText.lineHeight);
+            while (Log_queue.Count > TotalRows)
+                Log_queue.Dequeue();
+        }
+        bool MultitouchDetected ()
+        {
+            if (!ToggleByMultitouch) return false;
+            return Input.touchCount > 2 && Input.touches.Any(touch => touch.phase == TouchPhase.Began);
+        }
+        void HandleConsoleGUIInput ()
         {
             if (inputBuffer.Count > 0 && Event.current.isKey && Event.current.keyCode == KeyCode.UpArrow)
             {
@@ -281,7 +417,7 @@ namespace CYM
                 Hide();
             }
         }
-        private void ExecuteInput ()
+        void ExecuteInput ()
         {
             if (string.IsNullOrWhiteSpace(input)) return;
 
@@ -292,6 +428,30 @@ namespace CYM
             if (command.Length == 0) return;
             if (command.Length == 1) CommandDatabase.ExecuteCommand(command[0]);
             else CommandDatabase.ExecuteCommand(command[0], command.ToList().GetRange(1, command.Length - 1).ToArray());
+        }
+        void HandleLog(string message, string stackTrace, LogType type)
+        {
+            if (type == LogType.Assert && !LogErrors) return;
+            if (type == LogType.Error && !LogErrors) return;
+            if (type == LogType.Exception && !LogErrors) return;
+            if (type == LogType.Log && !LogMessages) return;
+            if (type == LogType.Warning && !LogWarnings) return;
+
+            string[] lines = message.Split(new char[] { '\n' });
+
+            foreach (string l in lines)
+                Log_queue.Enqueue(new LogMessage(l, type));
+
+            if (type == LogType.Assert && !StackTraceErrors) return;
+            if (type == LogType.Error && !StackTraceErrors) return;
+            if (type == LogType.Exception && !StackTraceErrors) return;
+            if (type == LogType.Log && !StackTraceMessages) return;
+            if (type == LogType.Warning && !StackTraceWarnings) return;
+
+            string[] trace = stackTrace.Split(new char[] { '\n' });
+
+            foreach (string t in trace)
+                if (t.Length != 0) Log_queue.Enqueue(new LogMessage("  " + t, type));
         }
         #endregion
 
@@ -327,13 +487,8 @@ namespace CYM
         #endregion
 
         #region Config
-        /// <summary>
-        /// The key to toggle console visibility.
-        /// </summary>
         [SerializeField,PropertyOrder(-100)]
         KeyCode ToggleKey = KeyCode.F1;
-        [FoldoutGroup("Core")]
-        public bool IsNoPlot = false;
         [FoldoutGroup("Core")]
         public bool IsIgnoreCondition = false;
         [FoldoutGroup("Core")]

@@ -488,6 +488,11 @@ namespace CYM.UI
         #region set
         public override void Show(bool b = true, bool useGroup = true, bool force = false)
         {
+            if (b && !force)
+            {
+                if (BaseInputMgr.IsPress)
+                    return;
+            }
             FirstCorner = null;
             InputWidth = null;
             InputCorner = null;

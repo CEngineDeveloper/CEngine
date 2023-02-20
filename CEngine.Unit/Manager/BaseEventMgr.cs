@@ -79,6 +79,8 @@ namespace CYM.Unit
         int CurEventIndex = 0;
         public TData TestNext()
         {
+            if (CurEventIndex >= ITDConfig.ListKeys.Count)
+                CurEventIndex = 0;
             if (ITDConfig.ListKeys.Count == 0) return null;
             if (CurEventIndex >= ITDConfig.ListKeys.Count) return null;
             string key = ITDConfig.ListKeys[CurEventIndex];

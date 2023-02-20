@@ -26,6 +26,7 @@ namespace CYM
         #endregion
 
         #region is height
+        public bool IsInScroll { get; private set; }
         public virtual bool IsMoving => true;
         protected virtual float LessHight => 0.1f;
         protected virtual float LowHight => 0.3f;
@@ -82,6 +83,7 @@ namespace CYM
 
             if (LastScrollVal != ScrollVal)
             {
+                IsInScroll = true;
                 LastScrollVal = ScrollVal;
                 if (IsLessHight != preIsLessHight)
                 {
@@ -113,6 +115,9 @@ namespace CYM
                     Callback_OnIsMostHight?.Invoke(IsMostHight);
                     Callback_OnHightChanged?.Invoke(CameraHightType.Most, IsMostHight);
                 }
+            }
+            else {
+                IsInScroll = false;
             }
         }
         //重场景中重新获得Camera

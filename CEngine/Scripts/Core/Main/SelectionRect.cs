@@ -1,11 +1,13 @@
 ﻿namespace CYM
 {
+    using System;
     using UnityEngine;
     public class SelectionRect : BaseCoreMono
     {
+        const string image = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAqUlEQVR4nO3QgQ0AMQyDwHz33zmvTgFSuQmwv93dedh5efzVAYIGVAcIGlAdIGhAdYCgAdUBggZUBwgaUB0gaEB1gKAB1QGCBlQHCBpQHSBoQHWAoAHVAYIGVAcIGlAdIGhAdYCgAdUBggZUBwgaUB0gaEB1gKAB1QGCBlQHCBpQHSBoQHWAoAHVAYIGVAcIGlAdIGhAdYCgAdUBggZUBwgaUB0gaODMzA9VOgR8F5U4SQAAAABJRU5ErkJggg==";
+        Texture2D mouseTexture = null;
+
         #region Inspector
-        [SerializeField]
-        Texture mouseTexture;
         [SerializeField]
         Color planeColor = new Color(0, 0.8f, 1, 0.35f);
         [SerializeField]
@@ -32,6 +34,13 @@
         #endregion
 
         #region life
+        public override void Awake()
+        {
+            base.Awake();
+            mouseTexture = new Texture2D(64, 64);
+            byte[] arr = Convert.FromBase64String(image);
+            mouseTexture.LoadImage(arr);
+        }
         public override void OnSetNeedFlag()
         {
             base.OnSetNeedFlag();

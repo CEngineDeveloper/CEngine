@@ -192,7 +192,7 @@ namespace CYM.Line
     public class BaseGLineMgr : BaseGFlowMgr
     {
         #region virtual
-        protected override string ResourcePrefabKey => SysConst.STR_Inv;
+        protected override string ResourcePrefabKey => "FastLineRenderer";
         protected virtual string ConstantPathPrefab => SysConst.STR_Inv;
         #endregion
 
@@ -209,6 +209,11 @@ namespace CYM.Line
         {
             base.OnSetNeedFlag();
             NeedUpdate = true;
+        }
+        public override void OnCreate()
+        {
+            base.OnCreate();
+            GameObject.DontDestroyOnLoad(ResourceObj);
         }
         public override void OnUpdate()
         {
@@ -338,8 +343,14 @@ namespace CYM.Line
         #endregion
 
         #region Callback
+        protected override void OnBattleLoad()
+        {
+            LinePool.DestroyAll();
+            base.OnBattleLoad();
+        }
         protected override void OnBattleUnLoaded()
         {
+            LinePool.DestroyAll();
             base.OnBattleUnLoaded();
         }
         #endregion

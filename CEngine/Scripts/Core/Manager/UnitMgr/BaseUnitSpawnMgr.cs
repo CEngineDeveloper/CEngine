@@ -100,8 +100,6 @@ namespace CYM
         {
             foreach (var item in Data)
             {
-                if (item.IsSystem)
-                    continue;
                 item.OnTurnbase(day,month,year);
             }
             base.OnTurnbase(day,month,year);
@@ -171,9 +169,6 @@ namespace CYM
             if (IsNoConfig || param.isNoConfig)
             {
                 goPrefab = BundleCacher.Get(param.tdid,false);
-                //如果没有Gold则返回
-                if (goPrefab == null && tdidOrPrefab == GoldTDID)
-                    return null;
             }
             else
             {
@@ -193,6 +188,11 @@ namespace CYM
                     return null;
                 }
             }
+            if (goPrefab == null)
+            {
+                CLog.Error($"没有，goPrefab:{tdidOrPrefab}");
+                return null;
+            }
 
             GameObject charaGO = PoolItem.Spawn(goPrefab, param.spwanPoint, param.quaternion);
             charaGO.name = tdidOrPrefab;
@@ -210,10 +210,14 @@ namespace CYM
                 TempSpawnTrans.transform.position = GoldPos == null ? SysConst.VEC_FarawayPos : GoldPos.Value;
                 Gold = Spawn(GoldTDID,new UnitSpawnParam { spwanPoint = TempSpawnTrans.transform.position,quaternion = Quaternion.identity,team = int.MaxValue,isNoConfig=true });
                 if (Gold == null)
+                {
+                    CLog.Error($"错误！没有配置{GoldTDID}");
                     return null;
+                }
+                Gold.EnsureDBDataConfig();
                 Gold.IsSystem = true;
             }
-            Gold.BaseConfig.Name = "黄金国";
+            Gold.gameObject.name = Gold.BaseConfig.Name = "黄金国";
             Callback_OnSpawnGold?.Invoke(Gold);
             return Gold;
         }
@@ -320,23 +324,19 @@ namespace CYM
         #region DB
         public override void OnRead1(DBBaseGame data)
         {
-            OnSpawSystem();
             base.OnRead1(data);
             foreach (var item in Data)
             {
-                if (item.IsSystem || item.IsWild)
-                    continue;
                 item.OnRead1(data);
             }
         }
 
         public override void OnRead2(DBBaseGame data)
         {
+            OnSpawSystem();
             base.OnRead2(data);
             foreach (var item in Data)
             {
-                if (item.IsSystem || item.IsWild)
-                    continue;
                 item.OnRead2(data);
             }
         }
@@ -346,8 +346,6 @@ namespace CYM
             base.OnRead3(data);
             foreach (var item in Data)
             {
-                if (item.IsSystem || item.IsWild)
-                    continue;
                 item.OnRead3(data);
             }
         }
@@ -356,8 +354,6 @@ namespace CYM
             base.OnReadEnd(data);
             foreach (var item in Data)
             {
-                if (item.IsSystem || item.IsWild)
-                    continue;
                 item.OnReadEnd(data);
             }
         }
@@ -367,8 +363,6 @@ namespace CYM
             base.OnWrite(data);
             foreach (var item in Data)
             {
-                if (item.IsSystem || item.IsWild)
-                    continue;
                 item.OnWrite(data);
             }
         }

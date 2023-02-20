@@ -112,7 +112,7 @@ namespace CYM
             var player = BaseGlobal.PlayerSpawnMgr.GetUnit(SelectedCharaTDID);
             if (player == null)
             {
-                CLog.Error($"错误！没有设置Player:{SelectedCharaTDID}");
+                CLog.Error($"错误！设置Player:{SelectedCharaTDID}");
                 return;
             }
             SetPlayer(player as TUnit,true);

@@ -3,7 +3,7 @@ namespace CYM
 {
     public partial class BaseUnit : BaseCoreMono
     {
-        static PluginUnit UPluginUnit = new PluginUnit
+        static PluginUnit PluginUnit = new PluginUnit
         {
             OnPostAddComponet = (u, x) => {
                 if (x is IHUDMgr)

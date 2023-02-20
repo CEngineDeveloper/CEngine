@@ -14,29 +14,29 @@ namespace CYM.UI
     {
         #region inspector
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UImage GameLogo;
+        protected UImage GameLogo;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UImage Logo;
+        protected UImage Logo;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UText VersionText;
+        protected UText VersionText;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UText BuildTime;
+        protected UText BuildTime;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UText Tips;
+        protected UText Tips;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UButton BntStartGame;
+        protected UButton BntStartGame;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UButton BntContinueGame;
+        protected UButton BntContinueGame;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UButton BntTutorial;
+        protected UButton BntTutorial;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UButton BntSettings;
+        protected UButton BntSettings;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UButton BntCredits;
+        protected UButton BntCredits;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UButton BntQuit;
+        protected UButton BntQuit;
         [FoldoutGroup("Inspector"), ChildGameObjectsOnly, SerializeField]
-        UButton BntWebsite;
+        protected UButton BntWebsite;
         #endregion
 
         #region prop

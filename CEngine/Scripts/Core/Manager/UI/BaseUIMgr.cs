@@ -21,7 +21,7 @@ namespace CYM.UI
         // 主界面
         public Dictionary<ViewGroup, List<UView>> GroupViews { get; private set; } = new Dictionary<ViewGroup, List<UView>>();
         public HashList<UView> MainViews { get; private set; } = new HashList<UView>();
-        public HashList<UView> OpenedMainViews { get; private set; } = new HashList<UView>();
+        public HashList<UView> OpenedMainGroupViews { get; private set; } = new HashList<UView>();
         protected int SortOrder = 0;
         // 根界面:画布
         public UView RootView { get; private set; }
@@ -51,7 +51,7 @@ namespace CYM.UI
                 item.DoDestroy();
             AllMainViews.RemoveAll(x=>MainViews.Contains(x));
             MainViews.Clear();
-            OpenedMainViews.Clear();
+            OpenedMainGroupViews.Clear();
             GroupViews.Clear();
         }
         #endregion
@@ -252,21 +252,22 @@ namespace CYM.UI
         #endregion
 
         #region get
-        public UView OpenedMainView
+        public UView OpenedMainGroupView
         {
             get
             {
-                if (!IsHaveOpenedMainView)
+                if (!IsHaveOpenedMainGroupView)
                     return null;
-                return OpenedMainViews[0];
+                return OpenedMainGroupViews[0];
             }
         }
-        public int OpenedMainViewCount => OpenedMainViews.Count;
+        public int OpenedMainGroupViewCount => OpenedMainGroupViews.Count;
         #endregion
 
         #region is
         public bool IsShow => RootView.IsShow;
-        public bool IsHaveOpenedMainView => OpenedMainViews.Count > 0;
+        //是否有主界面被打开
+        public bool IsHaveOpenedMainGroupView => OpenedMainGroupViews.Count > 0;
         #endregion
 
         #region Callback
@@ -295,7 +296,7 @@ namespace CYM.UI
                 }
             }
             if (view.Group == ViewGroup.Main)
-                OpenedMainViews.Add(view);
+                OpenedMainGroupViews.Add(view);
         }
         void OnCloseView(UView view, bool useGroup)
         {
@@ -312,7 +313,7 @@ namespace CYM.UI
                 }
             }
             if (view.Group == ViewGroup.Main)
-                OpenedMainViews.Remove(view);
+                OpenedMainGroupViews.Remove(view);
         }
         #endregion
 

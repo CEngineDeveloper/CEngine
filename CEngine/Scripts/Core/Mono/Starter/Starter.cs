@@ -2,8 +2,6 @@ using CYM.DLC;
 using HybridCLR;
 using Sirenix.OdinInspector;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
@@ -73,7 +71,7 @@ namespace CYM
             transform.hideFlags = HideFlags.NotEditable;
             transform.position = SysConst.VEC_GlobalPos;
             ConsoleObj = AddScript("Console");
-            SetupComponet<Logview>();
+            //SetupComponet<Logview>();
             SetupComponet<FPSCounter>();
         }
 #endif

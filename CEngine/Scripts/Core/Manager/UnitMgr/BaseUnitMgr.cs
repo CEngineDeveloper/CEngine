@@ -56,9 +56,9 @@ namespace CYM
                 CLog.Error("错误! GMgr(BaseUnitSpawnMgr)为空:{0},{1}", UnitType.ToString(), ConfigType.ToString());
             }
         }
-        public override void OnGameStarted1()
+        public override void OnGameStart1()
         {
-            base.OnGameStarted1();
+            base.OnGameStart1();
             CalcAveragePos();
         }
         #endregion

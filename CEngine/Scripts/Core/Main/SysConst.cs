@@ -47,6 +47,7 @@ namespace CYM
         public const string BN_Prefab = "prefab";
         public const string BN_Perform = "perform";
         public const string BN_Audio = "audio";
+        public const string BN_Narration = "narration";
         public const string BN_Materials = "material";
         public const string BN_UI = "ui";
         public const string BN_BG = "bg";
@@ -93,6 +94,7 @@ namespace CYM
         public const string STR_DLCItem = "DLCItem";
         public const string STR_Custom = "Custom";
         public const string STR_AssetBundles = "AssetBundles";
+        public const string STR_AssemblyEditor = "Assembly-CSharp-Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";        
         public const string STR_Assembly = "Assembly-CSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         public const string STR_AssemblyFirstpass = "Assembly-CSharp-firstpass, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         #endregion

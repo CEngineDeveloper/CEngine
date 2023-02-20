@@ -784,7 +784,17 @@ namespace CYM
                 }
             }
         }
-
+        public static DBData Convert<TData, DBData>(TData tdata, Callback<TData, DBData> callback = null)
+            where TData : TDBaseData
+            where DBData : DBBase, new()
+        {
+            DBData temp = new DBData();
+            temp.TDID = tdata.TDID;
+            temp.ID = IDUtil.Gen();
+            temp.CustomName = tdata.CustomName;
+            callback?.Invoke(tdata, temp);
+            return temp;
+        }
         public static void CopyToData(TDBaseData config, DBBase data)
         {
             data.CustomName = config.CustomName;

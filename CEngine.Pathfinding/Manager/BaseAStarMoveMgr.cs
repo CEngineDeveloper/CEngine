@@ -556,7 +556,7 @@ namespace CYM.Pathfinding
         {
             IsMovingFlag = false;
             BaseAStarMgr.GlobalMoveState.Remove();
-            BaseGlobal.AStarMgr?.SpeedUp(1.0f);
+            BaseGlobal.AStarMgr?.SetSpeedRate(1.0f);
             StateMachine.CurStateData?.OnMoveEnd();
 
             CalcCurNode();

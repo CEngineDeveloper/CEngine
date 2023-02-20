@@ -35,23 +35,25 @@ namespace CYM
 
         #region inspector
         //图片资源
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType BG = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Icon = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Head = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Texture = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Illustration = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType BG = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Icon = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Head = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Texture = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Illustration = BuildRuleType.Whole;
         //其他资源
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Audio = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Material = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Music = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Video = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Animator = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Audio = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Narration = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Material = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Music = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Video = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Animator = BuildRuleType.Whole;
         //Prefab资源
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Prefab = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Perform = BuildRuleType.Whole;
-        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType UI = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Prefab = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType Perform = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule")] BuildRuleType UI = BuildRuleType.Whole;
+        [SerializeField, FoldoutGroup("Rule"),ReadOnly] BuildRuleType Scene = BuildRuleType.File;
+        [SerializeField, FoldoutGroup("Rule")] List<BuildRuleConfig> BuildRule = new List<BuildRuleConfig>();
         //其他
-        [SerializeField, FoldoutGroup("Other")] List<BuildRuleConfig> BuildRule = new List<BuildRuleConfig>();
         [SerializeField, FoldoutGroup("Other")] List<DLCItemConfig> DLC = new List<DLCItemConfig>();
         #endregion
 
@@ -111,10 +113,12 @@ namespace CYM
             AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Head), Head));
             AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Texture), Texture));
             AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Illustration), Illustration));
-            //其他资源
+            //音效资源
             AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Audio), Audio));
-            AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Material), Material));
+            AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Narration), Narration));
             AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Music), Music));
+            //其他资源
+            AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Material), Material));
             AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Video), Video));
             AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Animator), Animator));
             //Prefab资源
@@ -122,7 +126,7 @@ namespace CYM
             AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Perform), Perform));
             AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(UI), UI));
             //场景资源
-            AddBuildRule(InnerBuildRule, new BuildRuleConfig("Scene", BuildRuleType.File));
+            AddBuildRule(InnerBuildRule, new BuildRuleConfig(nameof(Scene), Scene));
             //添加自定义规则
             foreach (var item in BuildRule)
             {

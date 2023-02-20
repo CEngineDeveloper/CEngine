@@ -91,7 +91,8 @@ namespace CYM.Pathfinding
         public void GroupToPos(IEnumerable<BaseUnit> selUnits, Vector3 pos)
         {
             GenerateMoveData(selUnits);
-
+            if (moveUnits.Count == 0)
+                return;
             Vector3 sum = Vector3.zero;
             foreach(var unit in moveUnits) {
                 sum += unit.Pos;

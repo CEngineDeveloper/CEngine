@@ -6,10 +6,6 @@
 // 填写类的描述...
 //------------------------------------------------------------------------------
 
-using UnityEngine;
-using CYM;
-using CYM.UI;
-using System;
 using System.Collections.Generic;
 
 namespace CYM
@@ -61,6 +57,16 @@ namespace CYM
             BattleMgr.Callback_OnInPauseLoadingView+= OnInPauseLoadingView;
 
             DBMgr.Callback_OnGenerateNewGameData += OnGenerateNewGameData;
+            DBMgr.Callback_OnModifyGameData += OnModifyGameData;
+            DBMgr.Callback_OnReadGameData += OnReadGameData;
+            DBMgr.Callback_OnReadGameDataStart += OnReadGameDataStart;
+            DBMgr.Callback_OnReadGameDataEnd += OnReadGameDataEnd;
+            DBMgr.Callback_OnWriteGameData += OnWriteGameData;
+
+            DBMgr.Callback_OnRead1+= OnRead1;
+            DBMgr.Callback_OnRead2 += OnRead2;
+            DBMgr.Callback_OnRead3 += OnRead3;
+            DBMgr.Callback_OnReadEnd += OnReadEnd;
         }
         #endregion
 
@@ -73,6 +79,45 @@ namespace CYM
 
         #region DB
         protected virtual void OnGenerateNewGameData(DBBaseGame arg1)
+        {
+
+        }
+        protected virtual void OnWriteGameData(DBBaseGame arg1)
+        {
+
+        }
+        protected virtual void OnReadGameDataEnd(DBBaseGame arg1)
+        {
+
+        }
+        protected virtual void OnReadGameDataStart(DBBaseGame arg1)
+        {
+
+        }
+        protected virtual void OnReadGameData(DBBaseGame arg1)
+        {
+
+        }
+        protected virtual void OnModifyGameData(DBBaseGame arg1)
+        {
+
+        }
+        protected virtual void OnReadEnd(DBBaseGame arg1)
+        {
+
+        }
+
+        protected virtual void OnRead3(DBBaseGame arg1)
+        {
+
+        }
+
+        protected virtual void OnRead2(DBBaseGame arg1)
+        {
+
+        }
+
+        protected virtual void OnRead1(DBBaseGame arg1)
         {
 
         }

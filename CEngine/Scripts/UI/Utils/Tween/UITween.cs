@@ -8,6 +8,12 @@ using UnityEngine;
 /// </summary>
 namespace CYM.UI
 {
+    public enum UITweenType
+    { 
+        None=-1,
+        OnShow=0,
+        OnStart=1,
+    }
     public class UITween : BaseMono
     {
         #region inspector
@@ -22,7 +28,7 @@ namespace CYM.UI
         [SerializeField]
         protected float Delay = 0;
         [SerializeField]
-        protected bool AutoTween = true;
+        protected UITweenType AutoTween = UITweenType.OnStart;
         [SerializeField]
         protected bool Inverse = false;
         #endregion
@@ -49,7 +55,7 @@ namespace CYM.UI
         public override void Start()
         {
             base.Start();
-            if (AutoTween)
+            if (AutoTween == UITweenType.OnStart)
             {
                 DoTween();
             }

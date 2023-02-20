@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: FastLineRendererMaterialNoGlow
   m_Shader: {fileID: 4800000, guid: ad22ec22849bbe342a234a41d5170771, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - ORTHOGRAPHIC_MODE
   m_InvalidKeywords: []
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0

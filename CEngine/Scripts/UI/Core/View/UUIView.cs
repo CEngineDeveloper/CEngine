@@ -24,6 +24,8 @@ namespace CYM.UI
         protected bool IsLayoutRebuild = false;
 
         [FoldoutGroup("Animator")]
+        public List<UIAlphaAnimator> AlphaAnimator = new List<UIAlphaAnimator>();
+        [FoldoutGroup("Animator")]
         public List<UIPosAnimator> PosAnimator = new List<UIPosAnimator>();
         [FoldoutGroup("Animator")]
         public List<UIScaleAnimator> ScaleAnimator = new List<UIScaleAnimator>();
@@ -43,6 +45,7 @@ namespace CYM.UI
 
         #region 内部
         Table LuaTable;
+        protected UITween[] UITweens;
         protected List<UIAnimator> EffectShows = new List<UIAnimator>();
         protected HashList<RectTransform> LayoutsDirty { get; private set; } = new HashList<RectTransform>();
         protected Graphic[] graphics { get; private set; }
@@ -109,7 +112,9 @@ namespace CYM.UI
             if (canvasGroup == null && RectTrans != null)
                 canvasGroup = GO.AddComponent<CanvasGroup>();
             LayoutGroup = GetComponent<LayoutGroup>();
+            UITweens = GetComponentsInChildren<UITween>();
             //初始化变化组件
+            EffectShows.AddRange(AlphaAnimator);
             EffectShows.AddRange(PosAnimator);
             EffectShows.AddRange(ScaleAnimator);
             foreach (var item in EffectShows)
@@ -254,6 +259,14 @@ namespace CYM.UI
             //执行界面的显示逻辑
             if (IsShow)
             {
+                //触发DOTween
+                if (UITweens != null)
+                {
+                    foreach (var item in UITweens)
+                    {
+                        item.DoTween();
+                    }
+                }
                 //刷新数据和组件
                 SetDirtyAll();
                 //设置焦点
@@ -640,9 +653,9 @@ namespace CYM.UI
         {
             if (IsDragged) return;
             if (moveTween != null) moveTween.Kill();
-            if (TweenMove.StartPos.x == -1)
+            if (TweenMove.StartPos.x == 0)
                 TweenMove.StartPos.x = RectTrans.anchoredPosition.x;
-            if (TweenMove.StartPos.y == -1)
+            if (TweenMove.StartPos.y == 0)
                 TweenMove.StartPos.y = RectTrans.anchoredPosition.y;
             if (IsShow && TweenMove.IsReset) RectTrans.anchoredPosition = TweenMove.StartPos;
             if (mainShowTime >= 0)

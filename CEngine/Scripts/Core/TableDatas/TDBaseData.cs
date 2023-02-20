@@ -20,9 +20,11 @@ namespace CYM
         #region prop
         public ITDMgr TDMgr { get; set; }
         protected BaseAudioMgr AudioMgr => BaseGlobal.AudioMgr;
-        public BaseUnit SelfBaseUnit { get; protected set; }
         protected object[] AddedObjs { get; private set; }
-        public BaseUnit Owner { get; protected set; }
+        public BaseUnit SelfBaseUnit { get; protected set; }
+        public BaseUnit OwnerBaseUnit { get; protected set; }
+        //来源
+        public BaseUnit CastBaseUnit { get; protected set; }
         #endregion
 
         #region config
@@ -257,13 +259,17 @@ namespace CYM
         {
             CustomName = name;
         }
-        public void SetOwner(BaseUnit owner)
+        public void SetOwnerBaseUnit(BaseUnit owner)
         {
-            Owner = owner;
+            OwnerBaseUnit = owner;
         }
         public void SetSelfBaseUnit(BaseUnit unit)
         {
             SelfBaseUnit = unit;
+        }
+        public void SeCastBaseUnit(BaseUnit unit)
+        {
+            CastBaseUnit = unit;
         }
         #endregion
 

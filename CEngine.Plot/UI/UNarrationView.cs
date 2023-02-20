@@ -44,7 +44,7 @@ namespace CYM.UI
         {
             base.OnCreatedView();
             Title?.CancleInit();
-            DescPool = new GOPool(Desc.gameObject, CanvasGroup.transform);
+            DescPool = new GOPool(Desc.gameObject, Desc.gameObject.transform.parent);
             Bg?.Init(new UImageData { OnClick = OnClickBg });
             KeyTip?.Init(new UTextData { Name = GetKeyTip, IsTrans = false });
             Desc?.Show(false);

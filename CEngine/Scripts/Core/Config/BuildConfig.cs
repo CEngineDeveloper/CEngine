@@ -53,6 +53,8 @@ namespace CYM
         [SerializeField,ShowInInspector]
         public HashSet<LanguageType> Language = new HashSet<LanguageType>();
         [SerializeField]
+        public bool IsTestLanguge = true;
+        [SerializeField]
         public bool IsDiscreteShared = true; //是否为离散的共享包
         [SerializeField]
         public bool IsForceBuild = false;

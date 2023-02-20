@@ -34,22 +34,18 @@ namespace CYM.FOW
             NeedUpdate = true;
             NeedFixedUpdate = true;
         }
-        protected override void OnBattleLoadedScene()
+        public override void OnGameStart1()
         {
-            base.OnBattleLoadedScene();
+            base.OnGameStart1();
             if (CameraMgr != null &&
                 CameraMgr.MainCamera != null)
             {
                 FOWPPS = Util.GetSetting<FogOfWarPPSv2>(CameraMgr.MainCameraTrans.gameObject);
+                FOWPPS.outsideFogStrength.value = 1.0f;
                 FOW = FogOfWarTeam.instances.FirstOrDefault();
                 EnableFOW(true);
                 FOW?.SetAll(255);
             }
-        }
-        public override void OnGameStart1()
-        {
-            base.OnGameStart1();
-
         }
         public override void OnGameStartOver()
         {
@@ -75,7 +71,7 @@ namespace CYM.FOW
             base.OnUpdate();
             if (FOW && FOWPPS)
             {
-                float val = CameraMgr.GetCustomScrollVal(0.3f);
+                float val = CameraMgr.GetCustomScrollVal(0.3f);//0.3
                 FOWPPS.fogColor.value.a = CurveFOW.Evaluate(val);
             }
         }

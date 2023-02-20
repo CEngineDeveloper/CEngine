@@ -32,6 +32,15 @@ namespace CYM
         // 游戏存储
         public event Callback<ArchiveFile<TGameData>> Callback_OnSaveGame;
         public event Callback<DBBaseGame> Callback_OnGenerateNewGameData;
+        public event Callback<DBBaseGame> Callback_OnModifyGameData;
+        public event Callback<DBBaseGame> Callback_OnReadGameData;
+        public event Callback<DBBaseGame> Callback_OnReadGameDataStart;
+        public event Callback<DBBaseGame> Callback_OnReadGameDataEnd;
+        public event Callback<DBBaseGame> Callback_OnWriteGameData;
+        public event Callback<DBBaseGame> Callback_OnRead1;
+        public event Callback<DBBaseGame> Callback_OnRead2;
+        public event Callback<DBBaseGame> Callback_OnRead3;
+        public event Callback<DBBaseGame> Callback_OnReadEnd;
         #endregion
 
         #region prop
@@ -123,17 +132,6 @@ namespace CYM
         }
         // 删除存档
         public void DeleteArchives(string ID) => ArchiveMgr.DeleteArchives(ID);
-        public DBData Convert<TData,DBData>(TData tdata,Callback<TData, DBData> callback=null) 
-            where TData:TDBaseData 
-            where DBData:DBBase,new()
-        {
-            DBData temp = new DBData();
-            temp.TDID = tdata.TDID;
-            temp.ID = IDUtil.Gen();
-            temp.CustomName = tdata.CustomName;
-            callback?.Invoke(tdata, temp);
-            return temp;
-        }
         // 快照
         // isSnapshot=true 设置快照标记,否则表示临时快照表示内部使用
         public TGameData Snapshot(bool isSnapshot = true)
@@ -200,12 +198,26 @@ namespace CYM
         public void ReadGameDBData()
         {
             var data = CurGameData;
+            //读取数据开始
+            Callback_OnReadGameDataStart?.Invoke(data);
             OnReadGameDataStart(data);
+            //读取数据开始
+            Callback_OnReadGameData?.Invoke(data);
             OnReadGameData(data);
+            //读取数据1
+            Callback_OnRead1?.Invoke(data);
             SelfBaseGlobal.OnRead1(data);
+            //读取数据2
+            Callback_OnRead2?.Invoke(data);
             SelfBaseGlobal.OnRead2(data);
+            //读取数据3
+            Callback_OnRead3?.Invoke(data);
             SelfBaseGlobal.OnRead3(data);
+            //读取数据End
+            Callback_OnReadEnd?.Invoke(data);
             SelfBaseGlobal.OnReadEnd(data);
+            //读取数据结束
+            Callback_OnReadGameDataEnd?.Invoke(data);
             OnReadGameDataEnd(data);
         }
         // 统一写入:手动调用
@@ -215,6 +227,7 @@ namespace CYM
             var data = CurGameData;
             OnWriteGameData(ref data);
             SelfBaseGlobal.OnWrite(data);
+            Callback_OnWriteGameData?.Invoke(data);
         }
         #endregion
 
@@ -232,6 +245,7 @@ namespace CYM
         }
         protected virtual TGameData OnModifyGameData(TGameData data)
         {
+            Callback_OnModifyGameData?.Invoke(data);
             return data;
         }
         // 读取存档
@@ -240,8 +254,14 @@ namespace CYM
             PlayTime = data.PlayTime;
             BaseGlobal.ScreenMgr.SelectChara(data.PlayerTDID);
         }
-        protected virtual void OnReadGameDataStart(TGameData data) { }
-        protected virtual void OnReadGameDataEnd(TGameData data) { }
+        protected virtual void OnReadGameDataStart(TGameData data) 
+        {
+
+        }
+        protected virtual void OnReadGameDataEnd(TGameData data) 
+        {
+
+        }
         // 写入存档
         protected virtual void OnWriteGameData(ref TGameData data)
         {

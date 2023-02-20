@@ -108,7 +108,7 @@ namespace CYM
                 BaseLangMgr.Get("Unit_年"),
                 BaseLangMgr.Get("Unit_月"));
         }
-        public string GetCurYearMonthDay()
+        public string GetCurYMD()
         {
             return string.Format(
                 DateStrFormat_Day,
@@ -121,10 +121,11 @@ namespace CYM
                 BaseLangMgr.Get("Unit_日")
                 );
         }
-        public string GetACYearMonthDay()
+        public string GetTYMD()
         {
             return string.Format(
-                "{0}{1}" + space + "{2}{3}" + space + "{4}{5}",
+                "{0}"+space+ "{1}{2}" + space + "{3}{4}" + space + "{5}{6}",
+                GetTimeAgeType(),
                 GetYear(),
                 BaseLangMgr.Get("Unit_年"),
                 CurDateTime.Month,

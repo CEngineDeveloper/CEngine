@@ -47,6 +47,7 @@ namespace CYM
         public static RsCacher<Sprite> RsIcon { get; private set; } = new RsCacher<Sprite>(SysConst.BN_Icon);
         public static RsCacher<Sprite> RsHead { get; private set; } = new RsCacher<Sprite>(SysConst.BN_Head);
         public static RsCacher<AudioClip> RsAudio { get; private set; } = new RsCacher<AudioClip>(SysConst.BN_Audio);
+        public static RsCacher<AudioClip> RsNarration { get; private set; } = new RsCacher<AudioClip>(SysConst.BN_Narration);
         public static RsCacher<AudioClip> RsMusic { get; private set; } = new RsCacher<AudioClip>(SysConst.BN_Music);
         public static RsCacher<GameObject> RsUI { get; private set; } = new RsCacher<GameObject>(SysConst.BN_UI);
         public static RsCacher<VideoClip> RsVideo { get; private set; } = new RsCacher<VideoClip>(SysConst.BN_Video);
@@ -114,6 +115,7 @@ namespace CYM
         public static IPlotMgr PlotMgr { get; protected set; }
         public static IBattleMgr<TDBaseBattleData> BattleMgr { get; protected set; }
         public static ILevelMgr<TDBaseLevelData> LevelMgr { get; protected set; }
+        public static BasePostProcessMgr PostProcessMgr { get; protected set; }
         public static BaseInputMgr InputMgr { get; protected set; }
         public static BaseLoginMgr LoginMgr { get; protected set; }
         public static BaseCameraMgr CameraMgr { get; protected set; }
@@ -358,7 +360,7 @@ namespace CYM
         private void OnProcessCMDArgs()
         {
 #if UNITY_EDITOR
-            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            string[] commandLineArgs = System.Environment.GetCommandLineArgs();
             foreach (var item in commandLineArgs)
             {
                 CommandLineArgs.Add(item);
@@ -420,7 +422,10 @@ namespace CYM
         {
             Type keyType = typeof(T);
             if (AddedComponets.Contains(keyType))
+            {
+                CLog.Error($"重复添加Global组建:{keyType}");
                 return null;
+            }
             AddedComponets.Add(keyType);
 
             var ret = base.AddComponent<T>();
@@ -733,9 +738,6 @@ namespace CYM
                 return MainCamera.orthographic;
             }
         }
-        #endregion
-
-        #region Create config
         #endregion
 
         #region 渠道

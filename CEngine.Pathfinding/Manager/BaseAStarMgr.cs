@@ -764,7 +764,7 @@ namespace CYM.Pathfinding
         #region Global Move
         public static BoolState GlobalMoveState { get; private set; } = new BoolState();
         public static float MultipleSpeed { get; private set; } = 1.0f;
-        public void SpeedUp(float mul)
+        public void SetSpeedRate(float mul)
         {
             MultipleSpeed = mul;
         }

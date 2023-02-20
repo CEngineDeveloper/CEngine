@@ -10,6 +10,15 @@ namespace CYM
 {
     public partial class BaseUnit : BaseCoreMono
     {
-        public static BaseULineMgr LineRenderMgr { get; protected set; }
+        static PluginUnit PluginFastline = new PluginUnit
+        {
+            OnPostAddComponet = (u, x) => {
+                if (x is BaseULineMgr)
+                {
+                    u.LineRenderMgr = x as BaseULineMgr;
+                }
+            }
+        };
+        public BaseULineMgr LineRenderMgr { get; protected set; }
     }
 }

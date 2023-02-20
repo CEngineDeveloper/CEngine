@@ -72,8 +72,6 @@ namespace CYM.UI
         protected bool IsAddBlocker = true;
         [FoldoutGroup("FullScreen"), SerializeField, HideIf("Inspector_HideIsBlockerClose")]// UI界面是否自动添加UIBlocker
         protected bool IsBlockerClose = false;
-        //[FoldoutGroup("FullScreen"), SerializeField, HideIf("Inspector_HideBlockerCol")]// UI界面是否自动添加UIBlocker
-        //protected Color BlockerCol = new Color(0, 0, 0,0.5f);
 
         [FoldoutGroup("Prop"), SerializeField]// 默认是打开还是显示
         protected bool IsShowDefault = false;
@@ -167,7 +165,7 @@ namespace CYM.UI
         #endregion
 
         #region life
-        protected virtual string FocusClip => "Focus";
+        protected virtual string FocusClip => "AppTab";
         public override MonoType MonoType => MonoType.View;
         public override LayerData LayerData => SysConst.Layer_UI;
 #if UNITY_EDITOR

@@ -87,6 +87,8 @@ namespace CYM
         public void StartBGM(string musics)
         {
             if (musics.IsInv()) return;
+            if (!BaseGlobal.RsMusic.IsHave(musics))
+                return;
             TempSoundConnection = null;
             TempSoundConnection = CreateConnection(new List<string>() { musics });
             PlayConnection(TempSoundConnection);

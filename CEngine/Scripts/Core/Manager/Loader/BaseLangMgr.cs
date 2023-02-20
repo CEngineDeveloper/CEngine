@@ -105,14 +105,15 @@ namespace CYM
             {
                 return dynamicDic[key].Invoke();
             }
-            //获得默认语言包的内容
-            else if (LanguageType != 0)
+            return GetWrapKey();
+
+            //当没有找到翻译内容时候，给key加个标记，提示开发者
+            string GetWrapKey()
             {
-                if (defualtDic.ContainsKey(key))
-                    return defualtDic[key];
-                else return key;
+                if(BuildConfig.Ins.IsTestLanguge)
+                    return "*" + key;
+                return key;
             }
-            return key;
         }
         public static string Get(string key, params object[] param)=> string.Format(Get(key), param);
         public static string Joint(string key, params object[] param)

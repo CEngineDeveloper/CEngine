@@ -73,6 +73,8 @@ namespace CYM.UI
         public List<GameObject> GOs { get; private set; } = new List<GameObject>();
         public List<UControl> Controls { get; private set; } = new List<UControl>();
 
+        //显示的Control数量
+        public int ShowControlCount { get; private set; } = 0;
         //子对象数量
         public int GOCount => GOs.Count;
         //当前选择的index
@@ -185,6 +187,14 @@ namespace CYM.UI
             {
                 base.Refresh();
             }
+
+            ShowControlCount = 0;
+            foreach (var item in Controls)
+            {
+                if (item.IsShow)
+                    ShowControlCount++;
+            }
+
             Data.OnSelectChange?.Invoke(CurSelectIndex, PreSelectIndex);
         }
         public override void OnFixedUpdate()
@@ -358,6 +368,11 @@ namespace CYM.UI
         #endregion
 
         #region set
+        //显示/关闭通过ShowControlCount
+        public void ToggleByEmpty()
+        {
+            Show(ShowControlCount > 0);
+        }
         public void ForControls(Callback<UControl> callback)
         {
             foreach (var item in Controls)

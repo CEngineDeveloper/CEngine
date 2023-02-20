@@ -5,14 +5,15 @@ namespace CYM
 {
     public class BaseAudioMgr : BaseMgr
     {
+        #region prop
         public const float DefaultMaxDistance = 18.0f;
         protected HashSet<AudioClip> CacheAudioClip = new HashSet<AudioClip>();
         protected HashSet<string> CacheAudioClipKey = new HashSet<string>();
         protected ISettingsMgr<DBBaseSettings> SettingsMgr => BaseGlobal.SettingsMgr;
         public AudioListener AudioListener { get; private set; }
         public SoundManager Ins { get; private set; }
-        #region prop
         public bool IsEnableSFX { get; protected set; } = true;
+        public AudioSource NarrationSource { get; private set; }
         #endregion
 
         #region life
@@ -54,13 +55,18 @@ namespace CYM
         }
         #endregion
 
-        #region set
-        // 关闭音效
-        // 和MuteSFX 的区别在于这个用于临时处理,不会保存到数据库
-        public void EnableSFX(bool b)
+        #region Play
+        public AudioSource PlayNarration(string name)
         {
-            IsEnableSFX = b;
+            StopNarration();
+            NarrationSource = SoundManager.PlaySFX(BaseGlobal.RsNarration.Get(name), false);
+            if (NarrationSource != null)
+                NarrationSource.spatialBlend = 0.0f;
+            return NarrationSource;
         }
+        #endregion
+
+        #region Play UI
         public AudioSource PlayUI(AudioClip clip, bool isLoop = false, bool isCache = false)
         {
             if (isCache)
@@ -75,6 +81,24 @@ namespace CYM
                 temp.spatialBlend = 0.0f;
             return temp;
         }
+        public AudioSource PlayUI(string clipName, bool isLoop = false, float volume = float.MaxValue)
+        {
+            if (clipName.IsInv())
+                return null;
+            AudioSource temp = PlaySFX(clipName, AudioListener.transform.position, isLoop, 18, false, true, volume);
+            if (temp != null)
+                temp.spatialBlend = 0.0f;
+            return temp;
+        }
+        public void PlayPlUI(string clipName, BaseUnit player, bool isLoop = false)
+        {
+            AudioSource temp = PlayPlSFX(clipName, player, AudioListener.transform.position, isLoop);
+            if (temp != null)
+                temp.spatialBlend = 0.0f;
+        }
+        #endregion
+
+        #region Play SFX
         public AudioSource PlaySFX(AudioClip clip, Vector3? pos = null, bool isLoop = false, bool isCache = false, bool isForce = false, float volume = float.MaxValue)
         {
             if (clip == null)
@@ -97,11 +121,54 @@ namespace CYM
             }
             return ret;
         }
-        public void PlayPlUI(string clipName, BaseUnit player, bool isLoop = false)
+        public AudioSource PlaySFX2D(string clipName, bool isLoop = false, bool isCache = false)
         {
-            AudioSource temp = PlayPlSFX(clipName, player, AudioListener.transform.position, isLoop);
+            if (!IsEnableSFX)
+                return null;
+            if (clipName.IsInv())
+                return null;
+            AudioSource temp = PlaySFX(clipName, AudioListener.transform.position, isLoop, 18, isCache, true);
             if (temp != null)
                 temp.spatialBlend = 0.0f;
+            return temp;
+        }
+        public AudioSource PlaySFX(string clipName, Vector3? pos = null, bool isLoop = false, float maxDis = DefaultMaxDistance, bool isCache = false, bool isForce = false, float volume = float.MaxValue)
+        {
+            if (!isForce && !IsEnableSFX) return null;
+            if (clipName == null) return null;
+            if (clipName.IsInv()) return null;
+            var clip = BaseGlobal.RsAudio.Get(clipName);
+            return PlaySFX(clip, pos, isLoop, maxDis, isCache, isForce, volume);
+        }
+        public AudioSource PlaySFX(AudioClip clip, Vector3? pos = null, bool isLoop = false, float maxDis = DefaultMaxDistance, bool isCache = false, bool isForce = false, float volume = float.MaxValue)
+        {
+            AudioSource temp = null;
+            if (isCache)
+            {
+                if (!CacheAudioClip.Contains(clip))
+                    CacheAudioClip.Add(clip);
+                else
+                    return null;
+            }
+
+            if (pos.HasValue)
+                temp = SoundManager.PlaySFX(clip, isLoop, 0.0f, volume, float.MaxValue, pos.Value);
+            else
+                temp = SoundManager.PlaySFX(clip, isLoop, 0.0f, volume, float.MaxValue);
+            if (temp != null)
+            {
+                temp.rolloffMode = AudioRolloffMode.Linear;
+                temp.spatialBlend = 1.0f;
+                temp.maxDistance = maxDis;
+            }
+            return temp;
+        }
+        public void PlaySFX(string[] clipName, Vector3? pos = null, bool isLoop = false, float maxDis = 60.0f)
+        {
+            if (clipName == null)
+                return;
+            foreach (var item in clipName)
+                PlaySFX(item, pos, isLoop, maxDis);
         }
         public AudioSource PlayPlSFX(string clipName, BaseUnit player, Vector3? pos = null, bool isLoop = false, float maxDis = 60.0f)
         {
@@ -110,9 +177,19 @@ namespace CYM
             if (!player.IsPlayer()) return null;
             return PlaySFX(clipName, pos, isLoop, maxDis);
         }
-        public void PlayMusic(AudioClip clip, bool isLoop = false)
+        #endregion
+
+        #region set
+        // 关闭音效
+        // 和MuteSFX 的区别在于这个用于临时处理,不会保存到数据库
+        public void EnableSFX(bool b)
         {
-            SoundManager.Play(clip, isLoop);
+            IsEnableSFX = b;
+        }
+        public void StopNarration()
+        {
+            if (NarrationSource != null)
+                NarrationSource.Stop();
         }
         public void Stop()
         {
@@ -167,62 +244,9 @@ namespace CYM
             if (SettingsMgr != null)
                 SettingsMgr.Settings.VolumeVoice = volume;
         }
-        public AudioSource PlayUI(string clipName, bool isLoop = false, float volume = float.MaxValue)
-        {
-            if (clipName.IsInv())
-                return null;
-            AudioSource temp = PlaySFX(clipName, AudioListener.transform.position, isLoop, 18, false, true, volume);
-            if (temp != null)
-                temp.spatialBlend = 0.0f;
-            return temp;
-        }
-        public AudioSource PlaySFX2D(string clipName, bool isLoop = false,bool isCache=false)
-        {
-            if (!IsEnableSFX)
-                return null;
-            if (clipName.IsInv())
-                return null;
-            AudioSource temp = PlaySFX(clipName, AudioListener.transform.position, isLoop, 18, isCache, true);
-            if (temp != null)
-                temp.spatialBlend = 0.0f;
-            return temp;
-        }
-        public AudioSource PlaySFX(string clipName, Vector3? pos = null, bool isLoop = false, float maxDis = DefaultMaxDistance, bool isCache = false, bool isForce = false, float volume = float.MaxValue)
-        {
-            if (!isForce && !IsEnableSFX) return null;
-            if (clipName == null) return null;
-            if (clipName.IsInv()) return null;
-            AudioSource temp = null;
-            var clip = BaseGlobal.RsAudio.Get(clipName);
-            if (isCache)
-            {
-                if (!CacheAudioClip.Contains(clip))
-                    CacheAudioClip.Add(clip);
-                else
-                    return null;
-            }
+        #endregion
 
-            if (pos.HasValue)
-                temp = SoundManager.PlaySFX(clip, isLoop, 0.0f, volume, float.MaxValue, pos.Value);
-            else
-                temp = SoundManager.PlaySFX(clip, isLoop, 0.0f, volume, float.MaxValue);
-            if (temp != null)
-            {
-                temp.rolloffMode = AudioRolloffMode.Linear;
-                temp.spatialBlend = 1.0f;
-                temp.maxDistance = maxDis;
-            }
-            return temp;
-        }
-        public void PlaySFX(string[] clipName, Vector3? pos = null, bool isLoop = false, float maxDis = 60.0f)
-        {
-            if (clipName == null)
-                return;
-            foreach (var item in clipName)
-                PlaySFX(item, pos, isLoop, maxDis);
-        }
-
-
+        #region Cache
         public void AddToCache(AudioClip clip)
         {
             CacheAudioClip.Add(clip);

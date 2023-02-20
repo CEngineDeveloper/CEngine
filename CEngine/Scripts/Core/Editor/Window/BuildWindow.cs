@@ -35,6 +35,7 @@ namespace CYM
         static DLCConfig DLCConfig => DLCConfig.Ins;
         static UIConfig UIConfig => UIConfig.Ins;
         static LogConfig LogConfig => LogConfig.Ins;
+        static PluginConfig PluginConfig => PluginConfig.Ins;
         protected static Dictionary<string, string> SceneNames { get; private set; } = new Dictionary<string, string>();
         protected static string VerticalStyle = "HelpBox";
         protected static string ButtonStyle = "minibutton";
@@ -101,7 +102,7 @@ namespace CYM
             Present_ConfigWindow();
             Present_PluginWindow();
             Present_LevelList();
-            Present_Ccustom();
+            Present_Custom();
             Present_Other();
             //GUI.enabled = Application.isPlaying;
         }
@@ -155,7 +156,7 @@ namespace CYM
 
                 EditorGUILayout.BeginHorizontal();
                 BuildConfig.Tag = (VersionTag)EditorGUILayout.EnumPopup("后缀", BuildConfig.Tag);
-                BuildConfig.Suffix = EditorGUILayout.IntField(BuildConfig.Suffix);
+                BuildConfig.Suffix = EditorGUILayout.IntField(BuildConfig.Suffix,GUILayout.Width(50));
                 EditorGUILayout.EndHorizontal();
 
 
@@ -255,6 +256,7 @@ namespace CYM
             EditorGUILayout.BeginVertical(VerticalStyle);
             if (LocalConfig.FoldLang = EditorGUILayout.BeginFoldoutHeaderGroup(LocalConfig.FoldLang, "语言"))
             {
+                BuildConfig.IsTestLanguge = GUILayout.Toggle(BuildConfig.IsTestLanguge,new GUIContent("开启语言包测试"));
                 foreach (var item in BuildConfig.Language)
                 {
                     DrawItem(item);
@@ -415,7 +417,17 @@ namespace CYM
                 EditorGUILayout.EndVertical();
 
                 EditorGUILayout.BeginVertical();
-                EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("Build Bundle"))
+                {
+                    if (CheckEorr()) return;
+                    if (!CheckDevBuildWarring()) return;
+                    if (!CheckAuthority()) return;
+                    if (!CheckKey()) return;
+                    RefreshData();
+                    Builder.BuildAllBundle();
+                    EditorUtility.DisplayDialog("提示!", $"恭喜! 程序构建已经打包完成!!", "确定");
+                    CLog.Green($"恭喜! 程序构建已经打包完成!!");
+                }
                 if (GUILayout.Button("Build EXE"))
                 {
                     if (CheckEorr()) return;
@@ -427,40 +439,15 @@ namespace CYM
                     EditorUtility.DisplayDialog("提示!", $"恭喜! 程序构建已经打包完成!!", "确定");
                     CLog.Green($"恭喜! 程序构建已经打包完成!!");
                 }
-                if (GUILayout.Button("Build ABEXE"))
+                if (GUILayout.Button("Build AB & EXE"))
                 {
                     if (CheckEorr()) return;
                     if (!CheckDevBuildWarring()) return;
                     if (!CheckAuthority()) return;
                     if (!CheckKey()) return;
                     RefreshData();
-                    foreach (var item in DLCConfig.EditorAll)
-                    {
-                        Builder.BuildBundle(item);
-                    }
+                    Builder.BuildAllBundle();
                     Builder.BuildEXE();
-                    EditorUtility.DisplayDialog("提示!", $"恭喜! 一键打包已经打包完成!!", "确定");
-                    CLog.Green($"恭喜! 一键打包已经打包完成!!");
-                    EditorApplication.Beep();
-                }
-                EditorGUILayout.EndHorizontal();
-
-                if (GUILayout.Button("Build All"))
-                {
-                    if (CheckEorr()) return;
-                    if (!CheckDevBuildWarring()) return;
-                    if (!CheckAuthority()) return;
-                    if (!CheckKey()) return;
-                    RefreshData();
-
-                    BuildHotFix();
-
-                    foreach (var item in DLCConfig.EditorAll)
-                    {
-                        Builder.BuildBundle(item);
-                    }
-                    Builder.BuildEXE();
-                    SaveDownloadFile();
                     EditorUtility.DisplayDialog("提示!", $"恭喜! 一键打包已经打包完成!!", "确定");
                     CLog.Green($"恭喜! 一键打包已经打包完成!!");
                     EditorApplication.Beep();
@@ -475,9 +462,11 @@ namespace CYM
         #region 热更
         public void Present_HotFix()
         {
+
             EditorGUILayout.BeginVertical(VerticalStyle);
             if (LocalConfig.FoldHotFix = EditorGUILayout.BeginFoldoutHeaderGroup(LocalConfig.FoldHotFix, "热更"))
             {
+                GUI.enabled = BuildConfig.IsHotFix;
                 EditorGUILayout.BeginVertical();
                 if (HybridCLRInstallerController.HasInstalledHybridCLR())
                 {
@@ -516,13 +505,30 @@ namespace CYM
                         }
                     }
 
-                    if (GUILayout.Button("Build Bundle"))
+                    if (GUILayout.Button("Build HotFix Bundle"))
                     {
                         HybridCLRBuilder.BuildSceneAssetBundleActiveBuildTarget();
                     }
-                    if (GUILayout.Button("Build All"))
+                    if (GUILayout.Button("Build HotFix All"))
                     {
                         BuildHotFix();
+                    }
+                    if (GUILayout.Button("Build All"))
+                    {
+                        if (CheckEorr()) return;
+                        if (!CheckDevBuildWarring()) return;
+                        if (!CheckAuthority()) return;
+                        if (!CheckKey()) return;
+                        RefreshData();
+
+                        BuildHotFix();
+
+                        Builder.BuildAllBundle();
+                        Builder.BuildEXE();
+                        SaveDownloadFile();
+                        EditorUtility.DisplayDialog("提示!", $"恭喜! 一键打包已经打包完成!!", "确定");
+                        CLog.Green($"恭喜! 一键打包已经打包完成!!");
+                        EditorApplication.Beep();
                     }
                     if (GUILayout.Button("Generate Download List"))
                     {
@@ -538,6 +544,7 @@ namespace CYM
                     }
                 }
                 EditorGUILayout.EndVertical();
+                GUI.enabled = true;
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
             EditorGUILayout.EndVertical();
@@ -645,7 +652,7 @@ namespace CYM
 
         #region 自定义,插件拓展自定义的UI
         public static HashList<PluginEditor> Plugins { get; private set; } = new HashList<PluginEditor>();
-        public void Present_Ccustom()
+        public void Present_Custom()
         {
             foreach (var item in Plugins)
             {
@@ -691,7 +698,7 @@ namespace CYM
                 else if (GUILayout.Button("运行"))
                 {
                     AssetDatabase.Refresh();
-                    GoToScene(GetSystemScenesPath(SysConst.SCE_Start), OpenSceneMode.Single);
+                    GoToScene(SysConst.SCE_Start, OpenSceneMode.Single);
                     EditorApplication.isPlaying = true;
                 }
                 EditorGUILayout.EndVertical();
@@ -713,12 +720,8 @@ namespace CYM
                 if (GUILayout.Button("GUIStyle")) GUIStyleWindow.ShowWindow();
                 else if (GUILayout.Button("Prefs")) PrefsWindow.ShowWindow();
                 else if (GUILayout.Button("ColorPicker")) ColorPickerWindow.ShowWindow();
-                else if (GUILayout.Button("Dependencies")) DependencyWindow.ShowWindow();
-                else if (GUILayout.Button("ParticleScaler")) ParticleScalerWindow.ShowWindow();
                 else if (GUILayout.Button("UnityTexture")) UnityTextureWindow.ShowWindow();
-                else if (GUILayout.Button("RampTexture")) RampTexGenWindow.ShowWindow();
                 else if (GUILayout.Button("Screenshot")) ScreenshotWindow.ShowWindow();
-                else if (GUILayout.Button("TerrainHeight")) TerrainHeightWindow.ShowWindow();
                 else if (GUILayout.Button("Console")) EditorUtility.OpenPropertyEditor(Starter.ConsoleObj);
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
@@ -786,6 +789,7 @@ namespace CYM
             EditorUtility.SetDirty(DLCConfig);
             EditorUtility.SetDirty(LocalConfig);
             EditorUtility.SetDirty(BuildConfig);
+            EditorUtility.SetDirty(PluginConfig);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
@@ -836,7 +840,7 @@ namespace CYM
         {
             if (GUILayout.Button(name))
             {
-                GoToScene(GetSystemScenesPath(name));
+                GoToScene(name);
                 if (name == SysConst.SCE_Start)
                 {
                 }
@@ -849,9 +853,9 @@ namespace CYM
                 GoToSceneByFullPath(fullPath);
             }
         }
-        protected static void GoToScene(string path, OpenSceneMode mode = OpenSceneMode.Single)
+        public static void GoToScene(string path, OpenSceneMode mode = OpenSceneMode.Single)
         {
-            GoToSceneByFullPath(Application.dataPath + path, mode);
+            GoToSceneByFullPath(Application.dataPath + GetSystemScenesPath(path), mode);
         }
         protected static void GoToSceneByFullPath(string path, OpenSceneMode mode = OpenSceneMode.Single)
         {
@@ -938,7 +942,7 @@ namespace CYM
         }
         static void LaunchLua()
         {
-            string assetsDirName = Path.Combine(SysConst.RPath_Bundles, "Lua/Lua.code-workspace");
+            string assetsDirName = Path.Combine("Lua.code-workspace");
 
             if (!File.Exists(assetsDirName))
             {
@@ -958,7 +962,9 @@ namespace CYM
             }
             FileUtil.OpenExplorer(assetsDirName);
         }
-        public static void GoToStart() => GoToScene(GetSystemScenesPath(SysConst.SCE_Start));
+        public static void GoToStart() => GoToScene(SysConst.SCE_Start);
+        public static void GoToPreview() => GoToScene(SysConst.SCE_Preview);
+        public static void GoToTest() => GoToScene(SysConst.SCE_Test);
         #endregion
 
         #region Override

@@ -157,16 +157,16 @@ namespace CYM.Unit
         #endregion
 
         #region add common
-        public TData AddScenario(Callback<TData> action = null)
+        public TData AddScenario(string baseKey, string illustration, string sfx, params object[] descPS)
         {
             var data = AddCommon((x)=> {
+                x.SetAuto(baseKey, illustration, sfx, descPS);
                 x.OnClick = (alertData) =>
                 {
-                    //UScenarioDlgView.Default?.Show(alertData);
+                    UScenarioDlgView.Default?.Show(alertData);
                 };
-                action?.Invoke(x); 
             }, 
-            null, false);
+            null, true);
 
             return data;
         }
@@ -215,16 +215,20 @@ namespace CYM.Unit
         }
         private TData Add(string tdid, BaseUnit cast = null, Callback<TData> action = null, bool isAutoTrigger = false)
         {
-            if (!ITDConfig.Contains(tdid))
+            if (CommonAlert == tdid)
             {
-                if (CommonAlert == tdid)
-                    CLog.Error("没有:{0},请手动添加CommonAlert", tdid);
-                else
-                    CLog.Error("没有:{0},请手动添加Alert", tdid);
-                return null;
+                return Add(CommonAlertData, cast, action, isAutoTrigger);
             }
-            TData sourceAlert = ITDConfig.Get<TData>(tdid);
-            return Add(sourceAlert, cast, action, isAutoTrigger);
+            else
+            {
+                if (!ITDConfig.Contains(tdid))
+                {
+                    CLog.Error("没有:{0},请手动添加Alert", tdid);
+                    return null;
+                }
+                TData sourceAlert = ITDConfig.Get<TData>(tdid);
+                return Add(sourceAlert, cast, action, isAutoTrigger);
+            }
         }
         private TData Add(TData sourceAlert, BaseUnit cast = null, Callback<TData> action = null, bool isAutoTrigger = false)
         {

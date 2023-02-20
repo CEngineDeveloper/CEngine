@@ -36,8 +36,8 @@
                 {
                     "BuildRuleName": "",
                     "SourceBundleName": "",
-                    "FullPath": "Assets/_Arts/Fonts/Normal-S.otf",
-                    "FileName": "Normal-S",
+                    "FullPath": "Assets/_Arts/Fonts/Normal-简体.otf",
+                    "FileName": "Normal-简体",
                     "Category": ""
                 }
             ]
@@ -101,6 +101,20 @@
                     "SourceBundleName": "audio",
                     "FullPath": "Assets/Plugins/CEngine/_Bundles/Audio/Error.wav",
                     "FileName": "Error",
+                    "Category": ""
+                },
+                {
+                    "BuildRuleName": "audio",
+                    "SourceBundleName": "audio",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Audio/Event.wav",
+                    "FileName": "Event",
+                    "Category": ""
+                },
+                {
+                    "BuildRuleName": "audio",
+                    "SourceBundleName": "audio",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/Audio/Tabclick.wav",
+                    "FileName": "Tabclick",
                     "Category": ""
                 }
             ]
@@ -423,6 +437,20 @@
                     "SourceBundleName": "ui",
                     "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/UTooltipView.prefab",
                     "FileName": "UTooltipView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/LoggerView/BaseLoggerView.prefab",
+                    "FileName": "BaseLoggerView",
+                    "Category": "view"
+                },
+                {
+                    "BuildRuleName": "ui",
+                    "SourceBundleName": "ui",
+                    "FullPath": "Assets/Plugins/CEngine/_Bundles/UI/View/LoggerView/BaseLogItem.prefab",
+                    "FileName": "BaseLogItem",
                     "Category": "view"
                 }
             ]

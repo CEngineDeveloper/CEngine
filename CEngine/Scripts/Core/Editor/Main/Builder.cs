@@ -96,6 +96,20 @@ namespace CYM
             _BuildEXE();
             OnPostBuild();
         }
+        internal static void BuildAllBundle()
+        {
+            foreach (var item in DLCConfig.EditorAll)
+            {
+                Builder.BuildBundle(item);
+            }
+        }
+        internal static void BuildAllDLCConfig()
+        {
+            foreach (var item in DLCConfig.EditorAll)
+            {
+                Builder.BuildDLCConfig(item);
+            }
+        }
         internal static void BuildBundle(DLCItem dlc)
         {
             OnPreBuild();

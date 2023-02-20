@@ -150,7 +150,7 @@ namespace CYM
 
         public void AddToData(TData data)
         {
-            data.SetOwner(SelfBaseUnit);
+            data.SetOwnerBaseUnit(SelfBaseUnit);
             Data.Add(data);
             OnDataChanged(data);
             if (BaseGlobal.IsUnReadData)

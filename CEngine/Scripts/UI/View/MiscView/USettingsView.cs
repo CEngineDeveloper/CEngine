@@ -110,6 +110,21 @@ namespace CYM.UI
             BntRevert?.Init(new UButtonData { NameKey = "还原", OnClick = OnBntRevert });
             BntSave?.Init(new UButtonData { NameKey = "保存",OnClick = OnBntSave });
         }
+        public override void Refresh()
+        {
+            base.Refresh();
+            GameplaySlider.ToggleByEmpty();
+            GameplayCheckbox.ToggleByEmpty();
+            GameplayDroplist.ToggleByEmpty();
+
+            GraphicsSlider.ToggleByEmpty();
+            GraphicsCheckbox.ToggleByEmpty();
+            GraphicsDroplist.ToggleByEmpty();
+
+            AudioSlider.ToggleByEmpty();
+            AudioCheckbox.ToggleByEmpty();
+            AudioDroplist.ToggleByEmpty();
+        }
         #endregion
 
         #region Gameplay Get data

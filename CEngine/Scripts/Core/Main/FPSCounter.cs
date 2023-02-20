@@ -9,7 +9,7 @@ namespace CYM
 		[SerializeField] bool EditorOnly = true;
 
 		[SerializeField] private bool _autoShow = true;
-		[SerializeField] private Anchor _anchor;
+		[SerializeField] private FPSAnchor _anchor;
 		[SerializeField] [HideInInspector]private float _updateInterval = 1f;
 		[SerializeField] [Range(1,120)]private int _targetFrameRate = 80;
 		[SerializeField] private int _fontSize = 32;
@@ -54,15 +54,11 @@ namespace CYM
         {
             base.Awake();
 			if (EditorOnly && !Application.isEditor) return;
-			//Application.targetFrameRate = _targetFrameRate;
 			IsShow = _autoShow;
 			_goodColor = new Color(.0f, 1f, .0f);
 			_okColor = new Color(.8f, .8f, .2f, .6f);
 			_badColor = new Color(.8f, .6f, .6f);
 
-			//var percent = _targetFrameRate / 100;
-			//var percent10 = percent * 10;
-			//var percent40 = percent * 40;
 			_okFps = 60;
 			_badFps = 30;
 
@@ -70,8 +66,8 @@ namespace CYM
 			var yPos = 0;
 			var linesHeight = 40;
 			var linesWidth = 90;
-			if (_anchor == Anchor.LeftBottom || _anchor == Anchor.RightBottom) yPos = Screen.height - linesHeight;
-			if (_anchor == Anchor.RightTop || _anchor == Anchor.RightBottom) xPos = Screen.width - linesWidth;
+			if (_anchor == FPSAnchor.LeftBottom || _anchor == FPSAnchor.RightBottom) yPos = Screen.height - linesHeight;
+			if (_anchor == FPSAnchor.RightTop || _anchor == FPSAnchor.RightBottom) xPos = Screen.width - linesWidth;
 			xPos += _xOffset;
 			yPos += _yOffset;
 			var yPos2 = yPos + 18;
@@ -123,7 +119,7 @@ namespace CYM
 			GUI.color = defaultColor;
 		}
 
-		private enum Anchor
+		private enum FPSAnchor
 		{
 			LeftTop, LeftBottom, RightTop, RightBottom
 		}

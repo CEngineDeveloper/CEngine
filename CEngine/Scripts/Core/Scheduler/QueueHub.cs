@@ -177,6 +177,8 @@ namespace CYM
         /// <param name="bImmediate">if false, the queue will run all its jobs and then destroy itself, otherwise the destruction is immediate</param>
         public static void DestroyQueue(string queueName, bool bImmediate)
         {
+            if (Instance == null)
+                return;
             Scheduler OutTmpQueue = null;
 
             if (Instance.Queues.TryGetValue(queueName, out OutTmpQueue))
@@ -192,6 +194,8 @@ namespace CYM
         /// <returns>true if queue exists, false otherwise</returns>
         public static bool DoesQueueExist(string queueName)
         {
+            if (Instance == null)
+                return false;
             return Instance.Queues.ContainsKey(queueName);
         }
 

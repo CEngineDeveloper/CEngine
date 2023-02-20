@@ -8,7 +8,6 @@
 
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 namespace CYM
 {
     public class BaseEntitySpawnMgr<TUnit, TConfig, TDBData, TOwner> : BaseUnitSpawnMgr<TUnit, TConfig>,IDBListConverMgr<TDBData>
@@ -51,9 +50,6 @@ namespace CYM
         {
             if (dbData == null)
                 return;
-            //Gold单位不加载
-            if (dbData.TDID == GoldTDID)
-                return;
             var unit = Spawn(dbData.TDID,new UnitSpawnParam { spwanPoint = dbData.Position.V3,quaternion = dbData.Rotation.Q,team =0,rtid = dbData.ID });
             unit.SetDBData(dbData);
         }
@@ -80,6 +76,7 @@ namespace CYM
         {
             var temp = data;
             Data.ForEach(x => {
+                //系统单位由系统创建，不做存储
                 if(!x.IsSystem)
                     temp.Add(x.DBData); 
             });

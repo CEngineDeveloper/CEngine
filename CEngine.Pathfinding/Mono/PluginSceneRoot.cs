@@ -51,7 +51,7 @@ namespace CYM
         LayerMask BakeColliderLayer;
         [FoldoutGroup(nameof(BakeCollider))]
         [FoldoutGroup(nameof(BakeCollider))]
-        [SerializeField, ReadOnly]
+        [SerializeField, ReadOnly,HideInInspector]
         public Array<Array<Vec3>> BakeColliderPos = new Array<Array<Vec3>>();
         [FoldoutGroup(nameof(BakeCollider))]
         [Button(nameof(BakeCollider))]

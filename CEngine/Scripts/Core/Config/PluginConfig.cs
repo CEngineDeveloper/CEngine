@@ -39,7 +39,7 @@ namespace CYM
                 var newItem = item.Replace("\\","/").Split('/').Last();
                 if (newItem == SysConst.Dir_CEngine)
                     continue;
-                var data = new Item { Name = newItem, Url = "",Path = item };
+                var data = new Item { Name = newItem, Url = "",Path = item.ToUnityPath() };
                 Datas.Add(newItem, data);
             }
         }

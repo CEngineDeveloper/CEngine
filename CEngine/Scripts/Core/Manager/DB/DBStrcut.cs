@@ -7,7 +7,6 @@
 // Copyright ©1995 [CYMCmmon] Powered By [CYM] Version 1.0.0 
 //**********************************************
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CYM

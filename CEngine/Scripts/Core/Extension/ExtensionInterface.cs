@@ -312,6 +312,15 @@ namespace CYM
         event Callback<bool> Callback_OnSaveState;
         event Callback<bool, DBBaseGame> Callback_OnLoadState;
         event Callback<DBBaseGame> Callback_OnGenerateNewGameData;
+        event Callback<DBBaseGame> Callback_OnModifyGameData;
+        event Callback<DBBaseGame> Callback_OnReadGameData;
+        event Callback<DBBaseGame> Callback_OnReadGameDataStart;
+        event Callback<DBBaseGame> Callback_OnReadGameDataEnd;
+        event Callback<DBBaseGame> Callback_OnWriteGameData;
+        event Callback<DBBaseGame> Callback_OnRead1;
+        event Callback<DBBaseGame> Callback_OnRead2;
+        event Callback<DBBaseGame> Callback_OnRead3;
+        event Callback<DBBaseGame> Callback_OnReadEnd;
         #endregion
 
         #region save and load
@@ -519,6 +528,13 @@ namespace CYM
         #region life
         void OnBeAdded(BaseCoreMono selfMono, params object[] obj);
         void OnBeRemoved();
+        #endregion
+
+        #region unit
+        public BaseUnit OwnerBaseUnit { get;  }
+        public BaseUnit SelfBaseUnit { get; }
+        //来源
+        public BaseUnit CastBaseUnit { get;}
         #endregion
 
         #region base get

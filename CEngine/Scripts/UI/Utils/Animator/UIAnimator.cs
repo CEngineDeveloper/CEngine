@@ -17,6 +17,7 @@ namespace CYM
         #region Inspector
         [SerializeField,ChildGameObjectsOnly]
         public GameObject Target;
+        [SerializeField]
         protected float Duration = 0.2f;
         [SerializeField, HideIf("Inspector_HideDelay")]
         protected float Delay = 0.0f;

@@ -65,7 +65,11 @@ namespace CYM.Pool
             }
             Used.Clear();
         }
-
+        public void DestroyAll()
+        {
+            Stack.Clear();
+            Used.Clear();
+        }
         public override string ToString()
         {
             return string.Format("SimpleObjPool: item=[{0}], inUse=[{1}], restInPool=[{2}/{3}] ", typeof(T), UsedCount, Stack.Count,0);

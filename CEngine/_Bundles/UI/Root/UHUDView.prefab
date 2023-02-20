@@ -78,6 +78,7 @@ MonoBehaviour:
     StartPos: {x: 0, y: 0}
   IsFocus: 0
   IsLayoutRebuild: 0
+  AlphaAnimator: []
   PosAnimator: []
   ScaleAnimator: []
   BntInfo: {fileID: 0}

@@ -99,6 +99,11 @@ namespace CYM
             Trans.localScale = Vector3.one;
             base.OnEnable();
         }
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            Clear();
+        }
         public override void OnFixedUpdate()
         {
             base.OnFixedUpdate();
@@ -265,10 +270,9 @@ namespace CYM
             Clear();
             SpawnMgr?.Despawn(this, DeathParam.IsDelayDespawn ? DeathDespawnTime : 0);
         }
-        public override void OnDisable()
+        public virtual void EnsureDBDataConfig()
         {
-            base.OnDisable();
-            Clear();
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -434,9 +438,10 @@ namespace CYM
         {
             Util.CopyTextToClipboard(GOName);
         }
+        [Button("AdjHeight")]
         public virtual void AdjHeight()
-        { 
-        
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -544,7 +549,7 @@ namespace CYM
                     go.transform.position = GetVirtualPos(type);
             }
         }
-        public Vector3 GetPos(NodeType nodeType)
+        public Vector3 GetNodePos(NodeType nodeType)
         {
             if (nodeType == NodeType.None)
                 return SysConst.VEC_FarawayPos;

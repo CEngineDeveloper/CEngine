@@ -56,7 +56,7 @@ namespace CYM
         {
             CollectData("_Bundles/UI/Raw/", FileRaw);
             CollectData("_Bundles/UI/Presenter/", FileComponent);
-            CollectData("_Bundles/UI/View/", FileView);
+            //CollectData("_Bundles/UI/View/", FileView);
         }
         #endregion
 
@@ -66,7 +66,7 @@ namespace CYM
             scrollVal = EditorGUILayout.BeginScrollView(scrollVal);
             DrawRawComponent();
             DrawComponent();
-            DrawView();
+            //DrawView();
             EditorGUILayout.EndScrollView();
         }
         #endregion

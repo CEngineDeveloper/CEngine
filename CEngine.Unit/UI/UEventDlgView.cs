@@ -29,6 +29,7 @@ namespace CYM.UI
         #endregion
 
         #region life
+        protected virtual string EventClip => "Event";
         protected override void OnCreatedView()
         {
             base.OnCreatedView();

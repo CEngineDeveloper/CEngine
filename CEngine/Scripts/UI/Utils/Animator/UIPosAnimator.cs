@@ -7,6 +7,8 @@
 //------------------------------------------------------------------------------
 using UnityEngine;
 using DG.Tweening;
+using CYM.UI;
+
 namespace CYM
 {
     [System.Serializable]
@@ -17,6 +19,14 @@ namespace CYM
         Vector2 To;
         #endregion
 
+        public override void Init(UUIView self)
+        {
+            base.Init(self);
+            if (From.x == 0)
+                From.x = SourceAnchoredPosition.x;
+            if (From.y == 0)
+                From.y = SourceAnchoredPosition.y;
+        }
         public override void OnShow(bool b)
         {
             base.OnShow(b);

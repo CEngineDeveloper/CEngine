@@ -1,0 +1,250 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &184244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 435982}
+  - component: {fileID: 3317836}
+  - component: {fileID: 2363212}
+  - component: {fileID: 11484406}
+  - component: {fileID: 6494686}
+  m_Layer: 5
+  m_Name: TerrainGridSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &435982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 500, y: 500, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3317836
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184244}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2363212
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184244}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 384cd0540ba4f480ba0d48aaf58c2eff, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &11484406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a01c2198d58422e8c1c252ad33df90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCellsSqrt: 100
+  _isDirty: 0
+  mouseIsOver: 0
+  newInHierarchy: 1
+  _numCells: 40
+  _showCells: 1
+  _cellSize: {x: 0, y: 0}
+  _cellBorderColor: {r: 0.48659173, g: 0.49043074, b: 0.5294118, a: 1}
+  _cellCustomBorderThickness: 0
+  _cellBorderThickness: 1
+  _cellFillPadding: 0
+  _cellHighlightUseCellColor: 0
+  _cellHighlightColor: {r: 0, g: 0, b: 1, a: 0.7}
+  _cellHighlightColor2: {r: 0, g: 1, b: 0, a: 0.8}
+  _cellHighlightBorderSize: 0
+  _cellHighlightBorderColor: {r: 1, g: 1, b: 1, a: 1}
+  _cellHighlightNonVisible: 1
+  _cellsFlat: 0
+  _cellsMaxSlope: 1
+  _cellsMaxHeightDifference: 0
+  _cellsMinimumAltitude: 0
+  _cellsMinimumAltitudeClampVertices: 0
+  _cellsMaximumAltitude: 0
+  _cellsMaximumAltitudeClampVertices: 0
+  _voronoiSerializationData: 
+  _pathFindingHeuristicFormula: 5
+  _pathFindingMaxSteps: 2000
+  _pathFindingMaxCost: 2000
+  _pathFindingUseDiagonals: 1
+  _pathFindingHeavyDiagonalsCost: 1.4
+  _pathFindingIncludeInvisibleCells: 1
+  _enableRectangleSelection: 0
+  territoriesTexture: {fileID: 0}
+  territoriesTextureNeutralColor: {r: 0, g: 0, b: 0, a: 0}
+  territoriesHideNeutralCells: 0
+  _numTerritories: 2
+  _showTerritories: 1
+  _colorizeTerritories: 0
+  _colorizedTerritoriesAlpha: 0.71
+  _territoryHighlightColor: {r: 1, g: 0, b: 0, a: 0.7}
+  _territoryHighlightColor2: {r: 0, g: 1, b: 0, a: 0.8}
+  _territoryFrontierColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  _territoryFrontiersThickness: 1
+  _territoryDisputedFrontierColor: {r: 0, g: 1, b: 0, a: 1}
+  _showTerritoriesOuterBorder: 1
+  _allowTerritoriesInsideTerritories: 0
+  _territoriesIgnoreHiddenCells: 0
+  _terrain: {fileID: 0}
+  _terrainObject: {fileID: 0}
+  _terrainObjectsPrefix: 
+  _terrainObjectsLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _terrainObjectsSearchGlobal: 0
+  _terrainMeshPivot: {x: 0.5, y: 0.5}
+  canvasTexture: {fileID: 0}
+  _transparentBackground: 0
+  _useGeometryShaders: 1
+  _sortingOrder: 0
+  _gridMask: {fileID: 0}
+  _gridMaskUseScale: 0
+  _gridMaskInsideCount: 1
+  _gridTopology: 0
+  _seed: 1
+  _evenLayout: 0
+  _regularHexagons: 0
+  _hexSize: 0.01
+  _regularHexagonsWidth: 0
+  _gridRelaxation: 1
+  _gridCurvature: 0
+  _highlightMode: 2
+  _allowHighlightWhileDragging: 0
+  _highlightFadeMin: 0
+  _highlightFadeAmount: 0.5
+  _highlightScaleMin: 0.75
+  _highlightScaleMax: 1.1
+  _highlightFadeSpeed: 1
+  _highlightMinimumTerrainDistance: 1
+  _highlightEffect: 0
+  _overlayMode: 1
+  _gridCenter: {x: 0, y: 0}
+  _gridScale: {x: 1, y: 1}
+  _gridElevation: 0
+  _gridElevationBase: 0
+  _gridMinElevationMultiplier: 1
+  _gridCameraOffset: 0
+  _gridNormalOffset: 0
+  _gridMeshDepthOffset: -1
+  _gridSurfaceDepthOffset: -1
+  _gridSurfaceDepthOffsetTerritory: -1
+  _gridRoughness: 0.01
+  _cellRowCount: 8
+  _cellColumnCount: 8
+  textures:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _respectOtherUI: 1
+  _nearClipFadeEnabled: 0
+  _nearClipFade: 25
+  _nearClipFadeFallOff: 50
+  _farFadeEnabled: 0
+  _farFadeDistance: 500
+  _farFadeFallOff: 50
+  _circularFadeEnabled: 0
+  _circularFadeTarget: {fileID: 0}
+  _circularFadeDistance: 500
+  _circularFadeFallOff: 50
+  _enableGridEditor: 0
+  cameraMain: {fileID: 0}
+--- !u!64 &6494686
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184244}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}

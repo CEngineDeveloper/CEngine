@@ -26,7 +26,7 @@ namespace CYM
         public ObjectRegister<T> Data { get; private set; } = new ObjectRegister<T>();
         public RsCacher(string bundleName)
         {
-            Bundle = bundleName;
+            Bundle = bundleName.ToLower();
             BaseGRMgr.BundleCachers.Add(bundleName,this);
         }
 

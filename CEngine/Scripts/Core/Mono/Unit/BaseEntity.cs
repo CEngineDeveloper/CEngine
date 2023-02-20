@@ -87,6 +87,13 @@ namespace CYM
                 Callback_OnSetOwner?.Invoke(PreOwner, Owner);
             }
         }
+        public override void EnsureDBDataConfig()
+        {
+            if (DBData == null)
+                DBBaseData = new TDBData();
+            if (Config == null)
+                BaseConfig = new TConfig();
+        }
         #endregion
 
         #region is
@@ -148,10 +155,7 @@ namespace CYM
         #region DB
         public override void OnRead1(DBBaseGame data)
         {
-            if (DBData == null)
-                DBBaseData = new TDBData();
-            if (Config == null)
-                BaseConfig = new TConfig();
+            EnsureDBDataConfig();
             Config.CustomName = DBData.CustomName;
             base.OnRead1(data);
         }
